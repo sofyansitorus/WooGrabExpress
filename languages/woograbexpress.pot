@@ -1,0 +1,247 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: WooGrabExpress\n"
+"POT-Creation-Date: 2018-01-09 04:08+0700\n"
+"PO-Revision-Date: 2018-01-09 03:48+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: woograbexpress.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/class-woograbexpress.php:52
+msgid ""
+"Shipping rates calculator for GrabExpress courier from Grab Indonesia. <a "
+"href=\"https://www.grab.com/id/express/\" target=\"_blank\">Click here</a> "
+"to get more info about Grab Express terms and conditions."
+msgstr ""
+
+#: includes/class-woograbexpress.php:112
+msgid "Title"
+msgstr ""
+
+#: includes/class-woograbexpress.php:114
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: includes/class-woograbexpress.php:119
+msgid "API Key"
+msgstr ""
+
+#: includes/class-woograbexpress.php:121
+msgid ""
+"<a href=\"https://developers.google.com/maps/documentation/distance-matrix/"
+"get-api-key\" target=\"_blank\">Click here</a> to get a Google Maps Distance "
+"Matrix API Key."
+msgstr ""
+
+#: includes/class-woograbexpress.php:125
+msgid "Travel Mode"
+msgstr ""
+
+#: includes/class-woograbexpress.php:127
+msgid "Google Maps Distance Matrix API travel mode parameter."
+msgstr ""
+
+#: includes/class-woograbexpress.php:131
+msgid "Driving"
+msgstr ""
+
+#: includes/class-woograbexpress.php:132
+msgid "Walking"
+msgstr ""
+
+#: includes/class-woograbexpress.php:133
+msgid "Bicycling"
+msgstr ""
+
+#: includes/class-woograbexpress.php:137
+msgid "Restrictions"
+msgstr ""
+
+#: includes/class-woograbexpress.php:139
+msgid "Google Maps Distance Matrix API restrictions parameter."
+msgstr ""
+
+#: includes/class-woograbexpress.php:143
+msgid "Avoid Tolls"
+msgstr ""
+
+#: includes/class-woograbexpress.php:144
+msgid "Avoid Highways"
+msgstr ""
+
+#: includes/class-woograbexpress.php:145
+msgid "Avoid Ferries"
+msgstr ""
+
+#: includes/class-woograbexpress.php:146
+msgid "Avoid Indoor"
+msgstr ""
+
+#: includes/class-woograbexpress.php:150
+msgid "Store Location Latitude"
+msgstr ""
+
+#: includes/class-woograbexpress.php:152 includes/class-woograbexpress.php:158
+msgid ""
+"<a href=\"http://www.latlong.net/\" target=\"_blank\">Click here</a> to get "
+"your store location coordinates info."
+msgstr ""
+
+#: includes/class-woograbexpress.php:156
+msgid "Store Location Longitude"
+msgstr ""
+
+#: includes/class-woograbexpress.php:162
+msgid "Cost per Kilometer"
+msgstr ""
+
+#: includes/class-woograbexpress.php:164
+msgid "Per kilometer rates that will be billed to customer."
+msgstr ""
+
+#: includes/class-woograbexpress.php:169
+msgid "Minimum Cost"
+msgstr ""
+
+#: includes/class-woograbexpress.php:171
+msgid ""
+"Minimum shipping cost that will be billed to customer. Leave blank to "
+"disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:176
+msgid "Maximum Cost"
+msgstr ""
+
+#: includes/class-woograbexpress.php:178
+msgid ""
+"Maximum shipping cost that will be billed to customer. Leave blank to "
+"disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:183
+msgid "Maximum Package Weight"
+msgstr ""
+
+#: includes/class-woograbexpress.php:185
+msgid ""
+"Maximum package weight in kilograms that will be allowed to use this "
+"courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:191
+msgid "Maximum Package Width"
+msgstr ""
+
+#: includes/class-woograbexpress.php:193
+msgid ""
+"Maximum package size width in centimeters that will be allowed to use this "
+"courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:199
+msgid "Maximum Package Length"
+msgstr ""
+
+#: includes/class-woograbexpress.php:201
+msgid ""
+"Maximum package size length in centimeters that will be allowed to use this "
+"courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:207
+msgid "Maximum Package Height"
+msgstr ""
+
+#: includes/class-woograbexpress.php:209
+msgid ""
+"Maximum package size height in centimeters that will be allowed to use this "
+"courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:215
+msgid "Minimum Distance"
+msgstr ""
+
+#: includes/class-woograbexpress.php:217
+msgid ""
+"Minimum distance in kilometers that will be allowed to use this courier. "
+"Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:223
+msgid "Maximum Distance"
+msgstr ""
+
+#: includes/class-woograbexpress.php:225
+msgid ""
+"Maximum distance in kilometers that will be allowed to use this courier. "
+"Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:231
+msgid "Show distance"
+msgstr ""
+
+#: includes/class-woograbexpress.php:232
+msgid "Yes"
+msgstr ""
+
+#: includes/class-woograbexpress.php:234
+msgid "Show the distance info to customer during checkout."
+msgstr ""
+
+#: includes/class-woograbexpress.php:238
+msgid "Tax status"
+msgstr ""
+
+#: includes/class-woograbexpress.php:243
+msgid "Taxable"
+msgstr ""
+
+#: includes/class-woograbexpress.php:244
+msgid "None"
+msgstr ""
+
+#: includes/class-woograbexpress.php:369
+#, php-format
+msgid "%s package"
+msgid_plural "%s packages"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooGrabExpress"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/sofyansitorus/WooGrabExpress"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"WooCommerce per kilometer shipping rates calculator for GrabExpress courier "
+"from Grab Indonesia."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sofyan Sitorus"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/sofyansitorus"
+msgstr ""
