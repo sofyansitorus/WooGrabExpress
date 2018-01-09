@@ -1,6 +1,6 @@
 === WooGrabExpress ===
 Contributors: sofyansitorus
-Tags: woocommerce shipping,local shipping,private shipping,grabexpress,grab shipping
+Tags: woocommerce shipping,ojek online,ojek shipping,grab express,grab shipping
 Requires at least: 4.8
 Tested up to: 4.9.1
 Requires PHP: 5.6
@@ -17,6 +17,7 @@ Please note that this plugin is not using official Grab Indonesia API. This plug
 
 = Features =
 
+* Automatically split shipping for multiple items into several drivers if the package size exceeded package weight and dimensions limitation.
 * Set shipping cost per kilometer.
 * Set minimum cost that will be billed to customer.
 * Set maximum cost that will be billed to customer.
@@ -27,7 +28,6 @@ Please note that this plugin is not using official Grab Indonesia API. This plug
 * Set travel mode: Driving, Walking, Bicycling.
 * Set route restrictions: Avoid Tolls, Avoid Highways, Avoid Ferries, Avoid Indoor.
 * Set visibility distance info to customer.
-* Automatically split shipping into several shipments.
 
 == Installation ==
 = Minimum Requirements =
@@ -55,8 +55,14 @@ In the search field type “WooGrabExpress” and click Search Plugins. You can 
 
 == Changelog ==
 
+= 1.0.1 - 2018-01-09 =
+
+* Improvement - Set cost based on drivers counts needed..
+* Improvement - Add validation for settings field: gmaps_api_key, origin_lat, origin_lng.
+
 = 1.0.0 - 2018-01-09 =
 
+* Feature - Automatically split shipping for multiple items into several drivers if the package size exceeded package weight and dimensions limitation.
 * Feature - Set shipping cost per kilometer.
 * Feature - Set minimum cost that will be billed to customer.
 * Feature - Set maximum cost that will be billed to customer.
@@ -67,4 +73,3 @@ In the search field type “WooGrabExpress” and click Search Plugins. You can 
 * Feature - Set travel mode: Driving, Walking, Bicycling.
 * Feature - Set route restrictions: Avoid Tolls, Avoid Highways, Avoid Ferries, Avoid Indoor.
 * Feature - Set visibility distance info to customer.
-* Feature - Automatically split shipping into several shipments.
