@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooGrabExpress\n"
-"POT-Creation-Date: 2018-01-09 04:08+0700\n"
-"PO-Revision-Date: 2018-01-09 03:48+0700\n"
+"POT-Creation-Date: 2018-01-09 19:58+0700\n"
+"PO-Revision-Date: 2018-01-09 19:58+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid ""
 "Shipping rates calculator for GrabExpress courier from Grab Indonesia. <a "
 "href=\"https://www.grab.com/id/express/\" target=\"_blank\">Click here</a> "
-"to get more info about Grab Express terms and conditions."
+"to get more info about Grab Indonesia terms and conditions."
 msgstr ""
 
 #: includes/class-woograbexpress.php:112
@@ -217,10 +217,22 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: includes/class-woograbexpress.php:369
+#: includes/class-woograbexpress.php:262
+msgid "API Key is required"
+msgstr ""
+
+#: includes/class-woograbexpress.php:283
+msgid "Store Location Latitude is required"
+msgstr ""
+
+#: includes/class-woograbexpress.php:304
+msgid "Store Location Longitude is required"
+msgstr ""
+
+#: includes/class-woograbexpress.php:435
 #, php-format
-msgid "%s package"
-msgid_plural "%s packages"
+msgid "%s driver"
+msgid_plural "%s drivers"
 msgstr[0] ""
 msgstr[1] ""
 
