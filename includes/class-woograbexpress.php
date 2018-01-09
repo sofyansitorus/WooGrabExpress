@@ -272,6 +272,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 *
 	 * @since    1.0.0
 	 * @param array $package Package data array.
+	 * @throws Exception If the item weight and dimensions exceeded the limit.
 	 */
 	public function calculate_shipping( $package = array() ) {
 		$shipping_cost_total = 0;
@@ -291,7 +292,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 			return;
 		}
 
-		$packages_count = 1;
+		$drivers_count = 1;
 
 		$item_weight_bulk = array();
 		$item_width_bulk  = array();
@@ -350,13 +351,13 @@ class WooGrabExpress extends WC_Shipping_Method {
 				$item_length_bulk = array();
 				$item_height_bulk = array();
 
-				$packages_count++;
+				$drivers_count++;
 
 				continue;
 			}
 		}
 
-		$shipping_cost = ( $this->cost_per_km * $api_request['distance'] ) * $packages_count;
+		$shipping_cost_total = $this->cost_per_km * $api_request['distance'];
 
 		if ( $this->min_cost && $shipping_cost_total < $this->min_cost ) {
 			$shipping_cost_total = $this->min_cost;
@@ -366,11 +367,22 @@ class WooGrabExpress extends WC_Shipping_Method {
 			$shipping_cost_total = $this->max_cost;
 		}
 
-		$packages_count_text = sprintf( _n( '%s package', '%s packages', $packages_count, 'woograbexpress' ), $packages_count );
+		$shipping_cost_total *= $drivers_count;
+
+		$drivers_count_text = sprintf( _n( '%s driver', '%s drivers', $drivers_count, 'woogosend' ), $drivers_count );
+
+		switch ( $this->show_distance ) {
+			case 'yes':
+				$label = ( $drivers_count > 1 ) ? sprintf( '%s (%s, %s)', $this->title, $drivers_count_text, $api_request['distance_text'] ) : sprintf( '%s (%s)', $this->title, $api_request['distance_text'] );
+				break;
+			default:
+				$label = ( $drivers_count > 1 ) ? sprintf( '%s (%s)', $this->title, $drivers_count_text, $api_request['distance_text'] ) : $this->title;
+				break;
+		}
 
 		$rate = array(
-			'id'        => $this->id,
-			'label'     => ( 'yes' === $this->get_option( 'show_distance' ) ) ? sprintf( '%s (%s, %s)', $this->title, $packages_count_text, $api_request['distance_text'] ) : sprintf( '%s (%s)', $this->title, $packages_count_text ),
+			'id'        => $this->id . '_' . $drivers_count,
+			'label'     => $label,
 			'cost'      => $shipping_cost_total,
 			'meta_data' => $api_request,
 		);
@@ -407,8 +419,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 */
 	private function api_request( $destination ) {
 
-		$api_key = $this->get_option( 'gmaps_api_key' );
-		if ( empty( $api_key ) ) {
+		if ( empty( $this->gmaps_api_key ) ) {
 			return false;
 		}
 
@@ -422,16 +433,14 @@ class WooGrabExpress extends WC_Shipping_Method {
 			return false;
 		}
 
-		$travel_mode = $this->get_option( 'gmaps_api_mode', 'driving' );
-
 		$cache_keys = array(
-			$api_key,
+			$this->gmaps_api_key,
 			$destination,
 			$origins,
-			$travel_mode,
+			$this->gmaps_api_mode,
 		);
 
-		$route_avoid = $this->get_option( 'gmaps_api_avoid' );
+		$route_avoid = $this->gmaps_api_avoid;
 		if ( is_array( $route_avoid ) ) {
 			$route_avoid = implode( ',', $route_avoid );
 		}
@@ -451,13 +460,14 @@ class WooGrabExpress extends WC_Shipping_Method {
 
 		$request_url = add_query_arg(
 			array(
-				'key'          => rawurlencode( $this->get_option( 'gmaps_api_key' ) ),
+				'key'          => rawurlencode( $this->gmaps_api_key ),
 				'units'        => rawurlencode( 'metric' ),
-				'mode'         => rawurlencode( $travel_mode ),
+				'mode'         => rawurlencode( $this->gmaps_api_mode ),
 				'avoid'        => rawurlencode( $route_avoid ),
 				'destinations' => rawurlencode( $destination ),
 				'origins'      => rawurlencode( $origins ),
-			), $this->google_api_url
+			),
+			$this->google_api_url
 		);
 		$this->show_debug( 'Google Maps Distance Matrix API request URL: ' . $request_url );
 
