@@ -8,8 +8,8 @@
  * @link       https://github.com/sofyansitorus
  * @since      1.0.0
  *
- * @package    Wcsdm
- * @subpackage Wcsdm/includes
+ * @package    WooGrabExpress
+ * @subpackage WooGrabExpress/includes
  */
 
 /**
@@ -22,8 +22,8 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Wcsdm
- * @subpackage Wcsdm/includes
+ * @package    WooGrabExpress
+ * @subpackage WooGrabExpress/includes
  * @author     Sofyan Sitorus <sofyansitorus@gmail.com>
  */
 class WooGrabExpress extends WC_Shipping_Method {
