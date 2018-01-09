@@ -510,15 +510,10 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 * @return string
 	 */
 	private function get_origin_info() {
-		$origin_info = array();
-		$origin_lat  = $this->get_option( 'origin_lat' );
-		$origin_lng  = $this->get_option( 'origin_lng' );
-		if ( empty( $origin_lat ) && empty( $origin_lng ) ) {
+		if ( empty( $this->origin_lat ) && empty( $this->origin_lng ) ) {
 			return false;
 		}
-		$origin_info[] = $origin_lat;
-		$origin_info[] = $origin_lng;
-		return implode( ',', $origin_info );
+		return implode( ',', array( $this->origin_lat, $this->origin_lng ) );
 	}
 
 	/**
