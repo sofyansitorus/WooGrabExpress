@@ -169,7 +169,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				),
 			),
 			'grabexpress_title' => array(
-				'title'       => __( 'GrabExpress Service Options', 'woogosend' ),
+				'title'       => __( 'GrabExpress Service Options', 'woograbexpress' ),
 				'type'        => 'title',
 				'description' => __( '<a href="https://www.grab.com/id/express/" target="_blank">Click here</a> for more info about GrabExpress.', 'woograbexpress' ),
 			),
@@ -264,7 +264,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	public function validate_gmaps_api_key_field( $key, $value ) {
 		try {
 			if ( empty( $value ) ) {
-				throw new Exception( __( 'API Key is required', 'woogosend' ) );
+				throw new Exception( __( 'API Key is required', 'woograbexpress' ) );
 			}
 			return $value;
 		} catch ( Exception $e ) {
@@ -285,7 +285,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	public function validate_origin_lat_field( $key, $value ) {
 		try {
 			if ( empty( $value ) ) {
-				throw new Exception( __( 'Store Location Latitude is required', 'woogosend' ) );
+				throw new Exception( __( 'Store Location Latitude is required', 'woograbexpress' ) );
 			}
 			return $value;
 		} catch ( Exception $e ) {
@@ -306,7 +306,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	public function validate_origin_lng_field( $key, $value ) {
 		try {
 			if ( empty( $value ) ) {
-				throw new Exception( __( 'Store Location Longitude is required', 'woogosend' ) );
+				throw new Exception( __( 'Store Location Longitude is required', 'woograbexpress' ) );
 			}
 			return $value;
 		} catch ( Exception $e ) {
@@ -437,7 +437,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 
 		$shipping_cost_total *= $drivers_count;
 
-		$drivers_count_text = sprintf( _n( '%s driver', '%s drivers', $drivers_count, 'woogosend' ), $drivers_count );
+		$drivers_count_text = sprintf( _n( '%s driver', '%s drivers', $drivers_count, 'woograbexpress' ), $drivers_count );
 
 		switch ( $this->show_distance ) {
 			case 'yes':
