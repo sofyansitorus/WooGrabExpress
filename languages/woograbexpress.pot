@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooGrabExpress\n"
-"POT-Creation-Date: 2018-01-09 19:58+0700\n"
-"PO-Revision-Date: 2018-01-09 19:58+0700\n"
+"POT-Creation-Date: 2018-01-10 15:32+0700\n"
+"PO-Revision-Date: 2018-01-10 15:32+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,10 +22,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: includes/class-woograbexpress.php:52
-msgid ""
-"Shipping rates calculator for GrabExpress courier from Grab Indonesia. <a "
-"href=\"https://www.grab.com/id/express/\" target=\"_blank\">Click here</a> "
-"to get more info about Grab Indonesia terms and conditions."
+msgid "Shipping rates calculator for GrabExpress courier from Grab Indonesia."
 msgstr ""
 
 #: includes/class-woograbexpress.php:112
@@ -106,130 +103,140 @@ msgid "Store Location Longitude"
 msgstr ""
 
 #: includes/class-woograbexpress.php:162
+msgid "Tax status"
+msgstr ""
+
+#: includes/class-woograbexpress.php:167
+msgid "Taxable"
+msgstr ""
+
+#: includes/class-woograbexpress.php:168
+msgid "None"
+msgstr ""
+
+#: includes/class-woograbexpress.php:172
+msgid "GrabExpress Service Options"
+msgstr ""
+
+#: includes/class-woograbexpress.php:174
+msgid ""
+"<a href=\"https://www.grab.com/id/express/\" target=\"_blank\">Click here</"
+"a> for more info about GrabExpress."
+msgstr ""
+
+#: includes/class-woograbexpress.php:177
 msgid "Cost per Kilometer"
 msgstr ""
 
-#: includes/class-woograbexpress.php:164
+#: includes/class-woograbexpress.php:179
 msgid "Per kilometer rates that will be billed to customer."
 msgstr ""
 
-#: includes/class-woograbexpress.php:169
+#: includes/class-woograbexpress.php:184
 msgid "Minimum Cost"
 msgstr ""
 
-#: includes/class-woograbexpress.php:171
+#: includes/class-woograbexpress.php:186
 msgid ""
 "Minimum shipping cost that will be billed to customer. Leave blank to "
 "disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:176
+#: includes/class-woograbexpress.php:191
 msgid "Maximum Cost"
 msgstr ""
 
-#: includes/class-woograbexpress.php:178
+#: includes/class-woograbexpress.php:193
 msgid ""
 "Maximum shipping cost that will be billed to customer. Leave blank to "
 "disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:183
+#: includes/class-woograbexpress.php:198
 msgid "Maximum Package Weight"
 msgstr ""
 
-#: includes/class-woograbexpress.php:185
+#: includes/class-woograbexpress.php:200
 msgid ""
 "Maximum package weight in kilograms that will be allowed to use this "
 "courier. Leave blank to disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:191
+#: includes/class-woograbexpress.php:206
 msgid "Maximum Package Width"
 msgstr ""
 
-#: includes/class-woograbexpress.php:193
+#: includes/class-woograbexpress.php:208
 msgid ""
 "Maximum package size width in centimeters that will be allowed to use this "
 "courier. Leave blank to disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:199
+#: includes/class-woograbexpress.php:214
 msgid "Maximum Package Length"
 msgstr ""
 
-#: includes/class-woograbexpress.php:201
+#: includes/class-woograbexpress.php:216
 msgid ""
 "Maximum package size length in centimeters that will be allowed to use this "
 "courier. Leave blank to disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:207
+#: includes/class-woograbexpress.php:222
 msgid "Maximum Package Height"
 msgstr ""
 
-#: includes/class-woograbexpress.php:209
+#: includes/class-woograbexpress.php:224
 msgid ""
 "Maximum package size height in centimeters that will be allowed to use this "
 "courier. Leave blank to disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:215
+#: includes/class-woograbexpress.php:230
 msgid "Minimum Distance"
 msgstr ""
 
-#: includes/class-woograbexpress.php:217
+#: includes/class-woograbexpress.php:232
 msgid ""
 "Minimum distance in kilometers that will be allowed to use this courier. "
 "Leave blank to disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:223
+#: includes/class-woograbexpress.php:238
 msgid "Maximum Distance"
 msgstr ""
 
-#: includes/class-woograbexpress.php:225
+#: includes/class-woograbexpress.php:240
 msgid ""
 "Maximum distance in kilometers that will be allowed to use this courier. "
 "Leave blank to disable."
 msgstr ""
 
-#: includes/class-woograbexpress.php:231
+#: includes/class-woograbexpress.php:246
 msgid "Show distance"
 msgstr ""
 
-#: includes/class-woograbexpress.php:232
+#: includes/class-woograbexpress.php:247
 msgid "Yes"
 msgstr ""
 
-#: includes/class-woograbexpress.php:234
+#: includes/class-woograbexpress.php:249
 msgid "Show the distance info to customer during checkout."
 msgstr ""
 
-#: includes/class-woograbexpress.php:238
-msgid "Tax status"
-msgstr ""
-
-#: includes/class-woograbexpress.php:243
-msgid "Taxable"
-msgstr ""
-
-#: includes/class-woograbexpress.php:244
-msgid "None"
-msgstr ""
-
-#: includes/class-woograbexpress.php:262
+#: includes/class-woograbexpress.php:267
 msgid "API Key is required"
 msgstr ""
 
-#: includes/class-woograbexpress.php:283
+#: includes/class-woograbexpress.php:288
 msgid "Store Location Latitude is required"
 msgstr ""
 
-#: includes/class-woograbexpress.php:304
+#: includes/class-woograbexpress.php:309
 msgid "Store Location Longitude is required"
 msgstr ""
 
-#: includes/class-woograbexpress.php:435
+#: includes/class-woograbexpress.php:440
 #, php-format
 msgid "%s driver"
 msgid_plural "%s drivers"
