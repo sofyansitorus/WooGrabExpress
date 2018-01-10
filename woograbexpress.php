@@ -15,7 +15,7 @@
  * Plugin Name:       WooGrabExpress
  * Plugin URI:        https://github.com/sofyansitorus/WooGrabExpress
  * Description:       WooCommerce per kilometer shipping rates calculator for GrabExpress courier from Grab Indonesia.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Sofyan Sitorus
  * Author URI:        https://github.com/sofyansitorus
  * License:           GPL-2.0+
