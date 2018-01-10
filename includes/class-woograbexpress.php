@@ -158,19 +158,33 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
 				'default'     => '',
 			),
+			'tax_status'      => array(
+				'title'   => __( 'Tax status', 'woograbexpress' ),
+				'type'    => 'select',
+				'class'   => 'wc-enhanced-select',
+				'default' => 'taxable',
+				'options' => array(
+					'taxable' => __( 'Taxable', 'woograbexpress' ),
+					'none'    => __( 'None', 'woograbexpress' ),
+				),
+			),
+			'grabexpress_title'         => array(
+				'title' => __( 'GrabExpress Service Options', 'woogosend' ),
+				'type'  => 'title',
+			),
 			'cost_per_km'     => array(
 				'title'       => __( 'Cost per Kilometer', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Per kilometer rates that will be billed to customer.', 'woograbexpress' ),
 				'desc_tip'    => true,
-				'default'     => '',
+				'default'     => '2500',
 			),
 			'min_cost'        => array(
 				'title'       => __( 'Minimum Cost', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Minimum shipping cost that will be billed to customer. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'    => true,
-				'default'     => '12000',
+				'default'     => '15000',
 			),
 			'max_cost'        => array(
 				'title'       => __( 'Maximum Cost', 'woograbexpress' ),
@@ -224,7 +238,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'type'              => 'number',
 				'description'       => __( 'Maximum distance in kilometers that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
-				'default'           => '30',
+				'default'           => '40',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
 			'show_distance'   => array(
@@ -233,16 +247,6 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'type'        => 'checkbox',
 				'description' => __( 'Show the distance info to customer during checkout.', 'woograbexpress' ),
 				'desc_tip'    => true,
-			),
-			'tax_status'      => array(
-				'title'   => __( 'Tax status', 'woograbexpress' ),
-				'type'    => 'select',
-				'class'   => 'wc-enhanced-select',
-				'default' => 'taxable',
-				'options' => array(
-					'taxable' => __( 'Taxable', 'woograbexpress' ),
-					'none'    => __( 'None', 'woograbexpress' ),
-				),
 			),
 		);
 	}
