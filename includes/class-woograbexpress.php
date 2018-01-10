@@ -49,7 +49,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 		$this->method_title = 'WooGrabExpress';
 
 		// Description shown in admin.
-		$this->method_description = __( 'Shipping rates calculator for GrabExpress courier from Grab Indonesia. <a href="https://www.grab.com/id/express/" target="_blank">Click here</a> to get more info about Grab Indonesia terms and conditions.', 'woograbexpress' );
+		$this->method_description = __( 'Shipping rates calculator for GrabExpress courier from Grab Indonesia.', 'woograbexpress' );
 
 		$this->enabled = $this->get_option( 'enabled' );
 
@@ -171,6 +171,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 			'grabexpress_title'         => array(
 				'title' => __( 'GrabExpress Service Options', 'woogosend' ),
 				'type'  => 'title',
+				'description' => __( '<a href="https://www.grab.com/id/express/" target="_blank">Click here</a> for more info about GrabExpress.', 'woograbexpress' ),
 			),
 			'cost_per_km'     => array(
 				'title'       => __( 'Cost per Kilometer', 'woograbexpress' ),
