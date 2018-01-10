@@ -56,7 +56,12 @@ In the search field type “WooGrabExpress” and click Search Plugins. You can 
 
 == Changelog ==
 
-= 1.0.2 - 2018-01-09 =
+= 1.0.3 - 2018-01-10 =
+
+* Improvements - Add new filter hooks: woocommerce_woograbexpress_shipping_destination_info.
+* Improvements - Add new filter hooks: woocommerce_woograbexpress_shipping_origin_info.
+
+= 1.0.2 - 2018-01-10 =
 
 * Improvement - Tweak settings panel UI and default value.
 
