@@ -50,14 +50,19 @@ In the search field type “WooGrabExpress” and click Search Plugins. You can 
 1. After installation has finished, click the ‘activate plugin’ link
 
 == Screenshots ==
-1. Settings panel top area
-2. Settings panel bottom area
+1. Settings panel: General Options
+2. Settings panel: GrabExpress Service Options
+3. Shipping Calculator preview
 
 == Changelog ==
 
+= 1.0.2 - 2018-01-09 =
+
+* Improvement - Tweak settings panel UI and default value.
+
 = 1.0.1 - 2018-01-09 =
 
-* Improvement - Set cost based on drivers counts needed..
+* Improvement - Set cost based on drivers counts needed.
 * Improvement - Add validation for settings field: gmaps_api_key, origin_lat, origin_lng.
 
 = 1.0.0 - 2018-01-09 =
