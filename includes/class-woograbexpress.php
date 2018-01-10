@@ -108,20 +108,20 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 */
 	public function init_form_fields() {
 		$this->instance_form_fields = array(
-			'title'           => array(
+			'title'             => array(
 				'title'       => __( 'Title', 'woograbexpress' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woograbexpress' ),
 				'default'     => $this->method_title,
 				'desc_tip'    => true,
 			),
-			'gmaps_api_key'   => array(
+			'gmaps_api_key'     => array(
 				'title'       => __( 'API Key', 'woograbexpress' ),
 				'type'        => 'text',
 				'description' => __( '<a href="https://developers.google.com/maps/documentation/distance-matrix/get-api-key" target="_blank">Click here</a> to get a Google Maps Distance Matrix API Key.', 'woograbexpress' ),
 				'default'     => '',
 			),
-			'gmaps_api_mode'  => array(
+			'gmaps_api_mode'    => array(
 				'title'       => __( 'Travel Mode', 'woograbexpress' ),
 				'type'        => 'select',
 				'description' => __( 'Google Maps Distance Matrix API travel mode parameter.', 'woograbexpress' ),
@@ -133,7 +133,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 					'bicycling' => __( 'Bicycling', 'woograbexpress' ),
 				),
 			),
-			'gmaps_api_avoid' => array(
+			'gmaps_api_avoid'   => array(
 				'title'       => __( 'Restrictions', 'woograbexpress' ),
 				'type'        => 'multiselect',
 				'description' => __( 'Google Maps Distance Matrix API restrictions parameter.', 'woograbexpress' ),
@@ -146,19 +146,19 @@ class WooGrabExpress extends WC_Shipping_Method {
 					'indoor'   => __( 'Avoid Indoor', 'woograbexpress' ),
 				),
 			),
-			'origin_lat'      => array(
+			'origin_lat'        => array(
 				'title'       => __( 'Store Location Latitude', 'woograbexpress' ),
 				'type'        => 'decimal',
 				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
 				'default'     => '',
 			),
-			'origin_lng'      => array(
+			'origin_lng'        => array(
 				'title'       => __( 'Store Location Longitude', 'woograbexpress' ),
 				'type'        => 'decimal',
 				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
 				'default'     => '',
 			),
-			'tax_status'      => array(
+			'tax_status'        => array(
 				'title'   => __( 'Tax status', 'woograbexpress' ),
 				'type'    => 'select',
 				'class'   => 'wc-enhanced-select',
@@ -168,33 +168,33 @@ class WooGrabExpress extends WC_Shipping_Method {
 					'none'    => __( 'None', 'woograbexpress' ),
 				),
 			),
-			'grabexpress_title'         => array(
-				'title' => __( 'GrabExpress Service Options', 'woogosend' ),
-				'type'  => 'title',
+			'grabexpress_title' => array(
+				'title'       => __( 'GrabExpress Service Options', 'woogosend' ),
+				'type'        => 'title',
 				'description' => __( '<a href="https://www.grab.com/id/express/" target="_blank">Click here</a> for more info about GrabExpress.', 'woograbexpress' ),
 			),
-			'cost_per_km'     => array(
+			'cost_per_km'       => array(
 				'title'       => __( 'Cost per Kilometer', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Per kilometer rates that will be billed to customer.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => '2500',
 			),
-			'min_cost'        => array(
+			'min_cost'          => array(
 				'title'       => __( 'Minimum Cost', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Minimum shipping cost that will be billed to customer. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => '15000',
 			),
-			'max_cost'        => array(
+			'max_cost'          => array(
 				'title'       => __( 'Maximum Cost', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Maximum shipping cost that will be billed to customer. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => '',
 			),
-			'max_weight'      => array(
+			'max_weight'        => array(
 				'title'             => __( 'Maximum Package Weight', 'woograbexpress' ),
 				'type'              => 'number',
 				'description'       => __( 'Maximum package weight in kilograms that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
@@ -202,7 +202,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'           => '5',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_width'       => array(
+			'max_width'         => array(
 				'title'             => __( 'Maximum Package Width', 'woograbexpress' ),
 				'type'              => 'number',
 				'description'       => __( 'Maximum package size width in centimeters that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
@@ -210,7 +210,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'           => '25',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_length'      => array(
+			'max_length'        => array(
 				'title'             => __( 'Maximum Package Length', 'woograbexpress' ),
 				'type'              => 'number',
 				'description'       => __( 'Maximum package size length in centimeters that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
@@ -218,7 +218,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'           => '32',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_height'      => array(
+			'max_height'        => array(
 				'title'             => __( 'Maximum Package Height', 'woograbexpress' ),
 				'type'              => 'number',
 				'description'       => __( 'Maximum package size height in centimeters that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
@@ -226,7 +226,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'           => '12',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'min_distance'    => array(
+			'min_distance'      => array(
 				'title'             => __( 'Minimum Distance', 'woograbexpress' ),
 				'type'              => 'number',
 				'description'       => __( 'Minimum distance in kilometers that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
@@ -234,7 +234,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'           => '1',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_distance'    => array(
+			'max_distance'      => array(
 				'title'             => __( 'Maximum Distance', 'woograbexpress' ),
 				'type'              => 'number',
 				'description'       => __( 'Maximum distance in kilometers that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
@@ -242,7 +242,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'           => '40',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'show_distance'   => array(
+			'show_distance'     => array(
 				'title'       => __( 'Show distance', 'woograbexpress' ),
 				'label'       => __( 'Yes', 'woograbexpress' ),
 				'type'        => 'checkbox',
@@ -588,10 +588,26 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 * @return string
 	 */
 	private function get_origin_info() {
-		if ( empty( $this->origin_lat ) && empty( $this->origin_lng ) ) {
-			return false;
+		$origin_info = array();
+
+		if ( ! empty( $this->origin_lat ) && ! empty( $this->origin_lng ) ) {
+			array_push( $origin_info, $this->origin_lat, $this->origin_lng );
 		}
-		return implode( ',', array( $this->origin_lat, $this->origin_lng ) );
+
+		/**
+		 * Developers can modify the origin info via filter hooks.
+		 *
+		 * @since 1.0.1
+		 *
+		 * This example shows how you can modify the shipping origin info via custom function:
+		 *
+		 *      add_action( 'woocommerce_woograbexpress_shipping_origin_info', 'modify_shipping_origin_info', 10, 2 );
+		 *
+		 *      function modify_shipping_origin_info( $origin_info, $method ) {
+		 *          return '1600 Amphitheatre Parkway,Mountain View,CA,94043';
+		 *      }
+		 */
+		return apply_filters( 'woocommerce_' . $this->id . '_shipping_origin_info', implode( ',', $origin_info ), $this );
 	}
 
 	/**
