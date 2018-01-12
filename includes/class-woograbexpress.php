@@ -449,7 +449,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 		}
 
 		$rate = array(
-			'id'        => $this->id . '_' . $drivers_count,
+			'id'        => $this->get_rate_id(),
 			'label'     => $label,
 			'cost'      => $shipping_cost_total,
 			'meta_data' => $api_request,
