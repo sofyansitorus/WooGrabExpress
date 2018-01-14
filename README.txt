@@ -82,6 +82,11 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 == Changelog ==
 
+= 1.1.0 - 2018-01-14 =
+
+* Improvements - Add new settings field to enable or disabled multiple drivers function.
+* Fix - A non-numeric value encountered warning.
+
 = 1.0.3 - 2018-01-10 =
 
 * Improvements - Add new filter hooks: woocommerce_woograbexpress_shipping_destination_info.
@@ -109,3 +114,8 @@ You can either create ticket at plugin support forum or GitHub repository:
 * Feature - Set travel mode: Driving, Walking, Bicycling.
 * Feature - Set route restrictions: Avoid Tolls, Avoid Highways, Avoid Ferries, Avoid Indoor.
 * Feature - Set visibility distance info to customer.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+This version add some improvements and fixes several critical bugs. Upgrade immediately.
