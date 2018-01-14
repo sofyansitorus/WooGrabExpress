@@ -510,7 +510,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 			if ( ! $item_weight || ! is_numeric( $item_weight ) ) {
 				$item_weight = 0;
 			}
-			$item_height *= $quantity;
+			$item_weight *= $quantity;
 			if ( $max_weight && $item_weight > $max_weight ) {
 				return;
 			}
