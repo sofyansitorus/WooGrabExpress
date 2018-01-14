@@ -442,6 +442,8 @@ class WooGrabExpress extends WC_Shipping_Method {
 	private function calculate_drivers_count( $contents, $max_weight = 0, $max_width = 0, $max_length = 0, $max_height = 0 ) {
 		$drivers_count = 1;
 
+		$multiple_drivers = 'yes' === $this->get_option( 'multiple_drivers', 'no' );
+
 		$item_weight_bulk = array();
 		$item_width_bulk  = array();
 		$item_length_bulk = array();
@@ -514,6 +516,11 @@ class WooGrabExpress extends WC_Shipping_Method {
 					throw new Exception( 'Exceeded maximum package height', 1 );
 				}
 			} catch ( Exception $e ) {
+				// Return if $multiple_drivers is disabled.
+				if ( ! $multiple_drivers ) {
+					return;
+				}
+
 				$item_weight_bulk = array();
 				$item_width_bulk  = array();
 				$item_length_bulk = array();
