@@ -243,17 +243,17 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'custom_attributes' => array( 'min' => '1' ),
 			),
 			'show_distance'     => array(
-				'title'       => __( 'Show distance', 'woograbexpress' ),
+				'title'       => __( 'Show Distance', 'woograbexpress' ),
 				'label'       => __( 'Yes', 'woograbexpress' ),
 				'type'        => 'checkbox',
 				'description' => __( 'Show the distance info to customer during checkout.', 'woograbexpress' ),
 				'desc_tip'    => true,
 			),
 			'multiple_drivers'  => array(
-				'title'       => __( 'Enable multiple drivers', 'woograbexpress' ),
-				'label'       => __( 'Yes', 'woograbexpress' ),
+				'title'       => __( 'Multiple Drivers', 'woograbexpress' ),
+				'label'       => __( 'Enable', 'woograbexpress' ),
 				'type'        => 'checkbox',
-				'description' => __( 'Enable multiple drivers if the package bulk weight and dimensions exceeded the limit.', 'woograbexpress' ),
+				'description' => __( 'Split shipment into several drivers if the package bulk weight and dimensions exceeded the limit.', 'woograbexpress' ),
 				'desc_tip'    => true,
 			),
 		);
