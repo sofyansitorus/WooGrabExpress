@@ -360,70 +360,14 @@ class WooGrabExpress extends WC_Shipping_Method {
 			return;
 		}
 
-		$drivers_count = 1;
+		$drivers_count = $this->calculate_drivers_count( $package['contents'], $this->max_weight, $this->max_width, $this->max_length, $this->max_height );
 
-		$item_weight_bulk = array();
-		$item_width_bulk  = array();
-		$item_length_bulk = array();
-		$item_height_bulk = array();
-
-		foreach ( $package['contents'] as $hash => $item ) {
-			// Check if item weight is not exceeded maximum package weight allowed.
-			$item_weight = wc_get_weight( $item['data']->get_weight(), 'kg' ) * $item['quantity'];
-			if ( $this->max_weight && $item_weight > $this->max_weight ) {
-				return;
-			}
-
-			// Check if item width is not exceeded maximum package width allowed.
-			$item_width = wc_get_dimension( $item['data']->get_width(), 'cm' );
-			if ( $this->max_width && $item_width > $this->max_width ) {
-				return;
-			}
-
-			// Check if item length is not exceeded maximum package length allowed.
-			$item_length = wc_get_dimension( $item['data']->get_length(), 'cm' );
-			if ( $this->max_length && $item_length > $this->max_length ) {
-				return;
-			}
-
-			// Check if item height is not exceeded maximum package height allowed.
-			$item_height = wc_get_dimension( $item['data']->get_height(), 'cm' ) * $item['quantity'];
-			if ( $this->max_height && $item_height > $this->max_height ) {
-				return;
-			}
-
-			// Try to split the order for several shipments.
-			try {
-				$item_weight_bulk[] = $item_weight;
-				if ( $this->max_weight && array_sum( $item_weight_bulk ) > $this->max_weight ) {
-					throw new Exception( 'Exceeded maximum package weight', 1 );
-				}
-
-				$item_width_bulk[] = $item_width;
-				if ( $this->max_width && max( $item_width_bulk ) > $this->max_width ) {
-					throw new Exception( 'Exceeded maximum package width', 1 );
-				}
-
-				$item_length_bulk[] = $item_length;
-				if ( $this->max_length && max( $item_length_bulk ) > $this->max_length ) {
-					throw new Exception( 'Exceeded maximum package length', 1 );
-				}
-
-				$item_height_bulk[] = $item_height;
-				if ( $this->max_height && array_sum( $item_height_bulk ) > $this->max_height ) {
-					throw new Exception( 'Exceeded maximum package height', 1 );
-				}
-			} catch ( Exception $e ) {
-				$item_weight_bulk = array();
-				$item_width_bulk  = array();
-				$item_length_bulk = array();
-				$item_height_bulk = array();
-
-				$drivers_count++;
-
-				continue;
-			}
+		if ( ! $drivers_count ) {
+			return;
 		}
+
+		// Translators: Number of dirvers needed.
+		$drivers_count_text = sprintf( _n( '%s driver', '%s drivers', $drivers_count, 'woograbexpress' ), $drivers_count );
 
 		$shipping_cost_total = $this->cost_per_km * $api_request['distance'];
 
@@ -436,8 +380,6 @@ class WooGrabExpress extends WC_Shipping_Method {
 		}
 
 		$shipping_cost_total *= $drivers_count;
-
-		$drivers_count_text = sprintf( _n( '%s driver', '%s drivers', $drivers_count, 'woograbexpress' ), $drivers_count );
 
 		switch ( $this->show_distance ) {
 			case 'yes':
