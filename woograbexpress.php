@@ -29,6 +29,10 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Defines plugin named constants.
+define( 'WOOGRABEXPRESS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'WOOGRABEXPRESS_URL', plugin_dir_url( __FILE__ ) );
+
 /**
  * Load plugin textdomain.
  *
