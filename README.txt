@@ -82,6 +82,10 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 == Changelog ==
 
+= 1.1.1 - 2018-01-15 =
+
+* Improvemnets - Add "Settings" link on the plugins.php page.
+
 = 1.1.0 - 2018-01-14 =
 
 * Improvements - Add new settings field to enable or disabled multiple drivers function.
@@ -118,4 +122,4 @@ You can either create ticket at plugin support forum or GitHub repository:
 == Upgrade Notice ==
 
 = 1.1.0 =
-This version add some improvements and fixes several critical bugs. Upgrade immediately.
+This version add some improvements. Upgrade immediately.
