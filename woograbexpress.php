@@ -80,6 +80,25 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	}
 	add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woograbexpress_plugin_action_links' );
 
+	/**
+	 * Enqueue admin scripts.
+	 *
+	 * @since 1.1.1
+	 * @param string $hook Passed screen ID in admin area.
+	 */
+	function woograbexpress_enqueue_scripts( $hook = null ) {
+		if ( 'woocommerce_page_wc-settings' === $hook ) {
+			wp_enqueue_script( 'woograbexpress', WOOGRABEXPRESS_URL . 'assets/js/woograbexpress.min.js', array( 'jquery' ), '', true );
+			wp_localize_script(
+				'woograbexpress',
+				'woograbexpress_params',
+				array(
+					'show_settings' => ( isset( $_GET['woograbexpress_settings'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'woograbexpress_settings' ) && is_admin() ),
+				)
+			);
+		}
+	}
+	add_action( 'admin_enqueue_scripts', 'woograbexpress_enqueue_scripts', 999 );
 
 	/**
 	 * Register shipping method
