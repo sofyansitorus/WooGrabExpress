@@ -49,7 +49,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 		$this->method_title = 'WooGrabExpress';
 
 		// Description shown in admin.
-		$this->method_description = __( 'Shipping rates calculator for GrabExpress courier from Grab Indonesia.', 'woograbexpress' );
+		$this->method_description = __( 'Per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.', 'woograbexpress' );
 
 		$this->enabled = $this->get_option( 'enabled' );
 
