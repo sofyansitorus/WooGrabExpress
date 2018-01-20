@@ -2,16 +2,16 @@
 Contributors: sofyansitorus
 Tags: woocommerce shipping,ojek online,ojek shipping,grab express,grab shipping
 Requires at least: 4.8
-Tested up to: 4.9.1
+Tested up to: 4.9.2
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-WooCommerce per kilometer shipping rates calculator for GrabExpress courier from Grab Indonesia.
+WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.
 
 == Description ==
-WooCommerce per kilometer shipping rates calculator for GrabExpress courier from Grab Indonesia.
+WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.
 
 Please note that this plugin is not using official Grab Indonesia API. This plugin just estimate the distance matrix using using Google Maps Distance Matrix API and then calculating the cost using the rates defined in the settings.
 
@@ -53,9 +53,9 @@ In the search field type “WooGrabExpress” and click Search Plugins. You can 
 = How to set the plugin settings? =
 You can setup the plugin setting from the Shipping Zones settings. Please check the following video tutorial how to setup the WooCommerce Shipping Zones:
 
-https://www.youtube.com/watch?v=eThWmrnBP38
+[youtube https://www.youtube.com/watch?v=eThWmrnBP38]
 
-Credits: [InMotion Hosting](https://www.inmotionhosting.com/)
+[Video](https://www.youtube.com/watch?v=eThWmrnBP38) by [InMotion Hosting](https://www.inmotionhosting.com)
 
 = Where can I get support? =
 You can either create ticket at plugin support forum or GitHub repository:
