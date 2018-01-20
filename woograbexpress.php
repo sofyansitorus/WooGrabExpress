@@ -32,6 +32,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Check if WooCommerce is active
+ */
+if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+	return;
+}// End if().
+
 // Defines plugin named constants.
 define( 'WOOGRABEXPRESS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOOGRABEXPRESS_URL', plugin_dir_url( __FILE__ ) );
@@ -46,76 +53,69 @@ function woograbexpress_load_textdomain() {
 }
 add_action( 'plugins_loaded', 'woograbexpress_load_textdomain' );
 
+/**
+ * Load the main class
+ *
+ * @since    1.0.0
+ */
+function woograbexpress_shipping_init() {
+	include plugin_dir_path( __FILE__ ) . 'includes/class-woograbexpress.php';
+}
+add_action( 'woocommerce_shipping_init', 'woograbexpress_shipping_init' );
 
 /**
- * Check if WooCommerce is active
+ * Add plugin action links.
+ *
+ * Add a link to the settings page on the plugins.php page.
+ *
+ * @since 1.1.1
+ *
+ * @param  array $links List of existing plugin action links.
+ * @return array         List of modified plugin action links.
  */
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
-	/**
-	 * Load the main class
-	 *
-	 * @since    1.0.0
-	 */
-	function woograbexpress_shipping_init() {
-		include plugin_dir_path( __FILE__ ) . 'includes/class-woograbexpress.php';
-	}
-	add_action( 'woocommerce_shipping_init', 'woograbexpress_shipping_init' );
+function woograbexpress_plugin_action_links( $links ) {
+	$links = array_merge(
+		array(
+			'<a href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&zone_id=0&woograbexpress_settings=1' ), 'woograbexpress_settings' ) ) . '">' . __( 'Settings', 'woograbexpress' ) . '</a>',
+		),
+		$links
+	);
 
-	/**
-	 * Add plugin action links.
-	 *
-	 * Add a link to the settings page on the plugins.php page.
-	 *
-	 * @since 1.1.1
-	 *
-	 * @param  array $links List of existing plugin action links.
-	 * @return array         List of modified plugin action links.
-	 */
-	function woograbexpress_plugin_action_links( $links ) {
-		$links = array_merge(
+	return $links;
+}
+add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woograbexpress_plugin_action_links' );
+
+/**
+ * Enqueue admin scripts.
+ *
+ * @since 1.1.1
+ * @param string $hook Passed screen ID in admin area.
+ */
+function woograbexpress_enqueue_scripts( $hook = null ) {
+	if ( 'woocommerce_page_wc-settings' === $hook ) {
+		wp_enqueue_script( 'woograbexpress', WOOGRABEXPRESS_URL . 'assets/js/woograbexpress.min.js', array( 'jquery' ), '', true );
+		wp_localize_script(
+			'woograbexpress',
+			'woograbexpress_params',
 			array(
-				'<a href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&zone_id=0&woograbexpress_settings=1' ), 'woograbexpress_settings' ) ) . '">' . __( 'Settings', 'woograbexpress' ) . '</a>',
-			),
-			$links
+				'show_settings' => ( isset( $_GET['woograbexpress_settings'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'woograbexpress_settings' ) && is_admin() ),
+			)
 		);
-
-		return $links;
 	}
-	add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woograbexpress_plugin_action_links' );
+}
+add_action( 'admin_enqueue_scripts', 'woograbexpress_enqueue_scripts', 999 );
 
-	/**
-	 * Enqueue admin scripts.
-	 *
-	 * @since 1.1.1
-	 * @param string $hook Passed screen ID in admin area.
-	 */
-	function woograbexpress_enqueue_scripts( $hook = null ) {
-		if ( 'woocommerce_page_wc-settings' === $hook ) {
-			wp_enqueue_script( 'woograbexpress', WOOGRABEXPRESS_URL . 'assets/js/woograbexpress.min.js', array( 'jquery' ), '', true );
-			wp_localize_script(
-				'woograbexpress',
-				'woograbexpress_params',
-				array(
-					'show_settings' => ( isset( $_GET['woograbexpress_settings'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'woograbexpress_settings' ) && is_admin() ),
-				)
-			);
-		}
-	}
-	add_action( 'admin_enqueue_scripts', 'woograbexpress_enqueue_scripts', 999 );
+/**
+ * Register shipping method
+ *
+ * @since    1.0.0
+ * @param array $methods Existing shipping methods.
+ */
+function woograbexpress_shipping_methods( $methods ) {
+	$methods['woograbexpress'] = 'WooGrabExpress';
+	return $methods;
+}
+add_filter( 'woocommerce_shipping_methods', 'woograbexpress_shipping_methods' );
 
-	/**
-	 * Register shipping method
-	 *
-	 * @since    1.0.0
-	 * @param array $methods Existing shipping methods.
-	 */
-	function woograbexpress_shipping_methods( $methods ) {
-		$methods['woograbexpress'] = 'WooGrabExpress';
-		return $methods;
-	}
-	add_filter( 'woocommerce_shipping_methods', 'woograbexpress_shipping_methods' );
-
-	// Show city field on the cart shipping calculator.
-	add_filter( 'woocommerce_shipping_calculator_enable_city', '__return_true' );
-
-}// End if().
+// Show city field on the cart shipping calculator.
+add_filter( 'woocommerce_shipping_calculator_enable_city', '__return_true' );
