@@ -42,6 +42,7 @@ if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins',
 // Defines plugin named constants.
 define( 'WOOGRABEXPRESS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOOGRABEXPRESS_URL', plugin_dir_url( __FILE__ ) );
+define( 'WOOGRABEXPRESS_VERSION', '1.1.1' );
 
 /**
  * Load plugin textdomain.
@@ -93,14 +94,23 @@ add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woograbexpres
  */
 function woograbexpress_enqueue_scripts( $hook = null ) {
 	if ( 'woocommerce_page_wc-settings' === $hook ) {
-		wp_enqueue_script( 'woograbexpress', WOOGRABEXPRESS_URL . 'assets/js/woograbexpress.min.js', array( 'jquery' ), '', true );
+		// Enqueue admin scripts.
+		$woograbexpress_admin_js = ( defined( 'WOOGRABEXPRESS_DEV' ) && WOOGRABEXPRESS_DEV ) ? add_query_arg( array( 't' => time() ), WOOGRABEXPRESS_URL . 'assets/js/woograbexpress-admin.js' ) : WOOGRABEXPRESS_URL . 'assets/js/woograbexpress-admin.min.js';
+		wp_enqueue_script(
+			'woograbexpress-admin', // Give the script a unique ID.
+			$woograbexpress_admin_js, // Define the path to the JS file.
+			array( 'jquery' ), // Define dependencies.
+			WOOGRABEXPRESS_VERSION, // Define a version (optional).
+			true // Specify whether to put in footer (leave this true).
+		);
 		wp_localize_script(
-			'woograbexpress',
+			'woograbexpress-admin',
 			'woograbexpress_params',
 			array(
 				'show_settings' => ( isset( $_GET['woograbexpress_settings'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'woograbexpress_settings' ) && is_admin() ),
 			)
 		);
+
 	}
 }
 add_action( 'admin_enqueue_scripts', 'woograbexpress_enqueue_scripts', 999 );
