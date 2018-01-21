@@ -43,6 +43,8 @@ if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins',
 define( 'WOOGRABEXPRESS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOOGRABEXPRESS_URL', plugin_dir_url( __FILE__ ) );
 define( 'WOOGRABEXPRESS_VERSION', '1.1.1' );
+define( 'WOOGRABEXPRESS_METHOD_ID', 'woograbexpress' );
+define( 'WOOGRABEXPRESS_METHOD_TITLE', 'WooGrabExpress' );
 
 /**
  * Load plugin textdomain.
@@ -75,9 +77,23 @@ add_action( 'woocommerce_shipping_init', 'woograbexpress_shipping_init' );
  * @return array         List of modified plugin action links.
  */
 function woograbexpress_plugin_action_links( $links ) {
+	$zone_id = 0;
+	$zones   = WC_Shipping_Zones::get_zones();
+	foreach ( $zones as $zone ) {
+		if ( empty( $zone['shipping_methods'] ) || empty( $zone['zone_id'] ) ) {
+			continue;
+		}
+		foreach ( $zone['shipping_methods'] as $zone_shipping_method ) {
+			if ( $zone_shipping_method instanceof WooGrabExpress ) {
+				$zone_id = $zone['zone_id'];
+				break;
+			}
+		}
+	}
+
 	$links = array_merge(
 		array(
-			'<a href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&zone_id=0&woograbexpress_settings=1' ), 'woograbexpress_settings' ) ) . '">' . __( 'Settings', 'woograbexpress' ) . '</a>',
+			'<a href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&zone_id=' . $zone_id ), 'woograbexpress_settings', 'woograbexpress_nonce' ) ) . '">' . __( 'Settings', 'woograbexpress' ) . '</a>',
 		),
 		$links
 	);
@@ -107,7 +123,9 @@ function woograbexpress_enqueue_scripts( $hook = null ) {
 			'woograbexpress-admin',
 			'woograbexpress_params',
 			array(
-				'show_settings' => ( isset( $_GET['woograbexpress_settings'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'woograbexpress_settings' ) && is_admin() ),
+				'show_settings' => ( isset( $_GET['woograbexpress_nonce'] ) && wp_verify_nonce( $_GET['woograbexpress_nonce'], 'woograbexpress_settings' ) && is_admin() ),
+				'method_id'     => WOOGRABEXPRESS_METHOD_ID,
+				'method_title'  => WOOGRABEXPRESS_METHOD_TITLE,
 			)
 		);
 

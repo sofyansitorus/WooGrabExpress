@@ -43,10 +43,10 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 */
 	public function __construct( $instance_id = 0 ) {
 		// ID for your shipping method. Should be unique.
-		$this->id = 'woograbexpress';
+		$this->id = WOOGRABEXPRESS_METHOD_ID;
 
 		// Title shown in admin.
-		$this->method_title = 'WooGrabExpress';
+		$this->method_title = WOOGRABEXPRESS_METHOD_TITLE;
 
 		// Description shown in admin.
 		$this->method_description = __( 'Per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.', 'woograbexpress' );
