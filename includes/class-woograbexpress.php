@@ -262,7 +262,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	/**
 	 * Generate origin settings field.
 	 *
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 * @param string $key Settings field key.
 	 * @param array  $data Settings field data.
 	 */
@@ -307,7 +307,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 	/**
 	 * Generate hidden settings field.
 	 *
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 * @param string $key Settings field key.
 	 * @param array  $data Settings field data.
 	 */
