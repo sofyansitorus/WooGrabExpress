@@ -111,22 +111,22 @@ add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woograbexpres
 function woograbexpress_enqueue_scripts( $hook = null ) {
 	if ( 'woocommerce_page_wc-settings' === $hook ) {
 
-        // Enqueue admin scripts.
-        $woograbexpress_admin_css = (defined('WOOGOSEND_DEV') && WOOGOSEND_DEV) ? add_query_arg(array( 't' => time() ), WOOGOSEND_URL . 'assets/css/woograbexpress-admin.css') : WOOGOSEND_URL . 'assets/css/woograbexpress-admin.min.css';
-        wp_enqueue_style(
-            'woograbexpress-admin', // Give the script a unique ID.
-            $woograbexpress_admin_css, // Define the path to the JS file.
-            array(), // Define dependencies.
-            WOOGOSEND_VERSION, // Define a version (optional).
-            false // Specify whether to put in footer (leave this false).
-        );
+		// Enqueue admin scripts.
+		$woograbexpress_admin_css = ( defined( 'WOOGRABEXPRESS_DEV' ) && WOOGRABEXPRESS_DEV ) ? add_query_arg( array( 't' => time() ), WOOGRABEXPRESS_URL . 'assets/css/woograbexpress-admin.css' ) : WOOGRABEXPRESS_URL . 'assets/css/woograbexpress-admin.min.css';
+		wp_enqueue_style(
+			'woograbexpress-admin', // Give the script a unique ID.
+			$woograbexpress_admin_css, // Define the path to the JS file.
+			array(), // Define dependencies.
+			WOOGRABEXPRESS_VERSION, // Define a version (optional).
+			false // Specify whether to put in footer (leave this false).
+		);
 
 		// Enqueue admin scripts.
 		$woograbexpress_admin_js = ( defined( 'WOOGRABEXPRESS_DEV' ) && WOOGRABEXPRESS_DEV ) ? add_query_arg( array( 't' => time() ), WOOGRABEXPRESS_URL . 'assets/js/woograbexpress-admin.js' ) : WOOGRABEXPRESS_URL . 'assets/js/woograbexpress-admin.min.js';
 		wp_enqueue_script(
 			'woograbexpress-admin', // Give the script a unique ID.
 			$woograbexpress_admin_js, // Define the path to the JS file.
-			array( 'jquery' ), // Define dependencies.
+			array( 'jquery', 'wp-util' ), // Define dependencies.
 			WOOGRABEXPRESS_VERSION, // Define a version (optional).
 			true // Specify whether to put in footer (leave this true).
 		);
@@ -140,7 +140,7 @@ function woograbexpress_enqueue_scripts( $hook = null ) {
 				'txt'           => array(
 					'drag_marker' => __( 'Drag this marker or search your address at the input above.', 'woograbexpress' ),
 				),
-				'marker'        => WOOGOSEND_URL . 'assets/img/marker.png',
+				'marker'        => WOOGRABEXPRESS_URL . 'assets/img/marker.png',
 			)
 		);
 
