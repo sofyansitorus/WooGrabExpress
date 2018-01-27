@@ -82,34 +82,38 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 == Changelog ==
 
+= 1.2.1 =
+
+* Fix - Cleaning up the js code.
+
 = 1.2.0 =
 
 * Improvemnets - Add "Map Location Picker" for store location setting.
 
-= 1.1.1 - 2018-01-15 =
+= 1.1.1 =
 
 * Improvemnets - Add "Settings" link on the plugins.php page.
 
-= 1.1.0 - 2018-01-14 =
+= 1.1.0 =
 
 * Improvements - Add new settings field to enable or disabled multiple drivers function.
 * Fix - A non-numeric value encountered warning.
 
-= 1.0.3 - 2018-01-10 =
+= 1.0.3 =
 
 * Improvements - Add new filter hooks: woocommerce_woograbexpress_shipping_destination_info.
 * Improvements - Add new filter hooks: woocommerce_woograbexpress_shipping_origin_info.
 
-= 1.0.2 - 2018-01-10 =
+= 1.0.2 =
 
 * Improvement - Tweak settings panel UI and default value.
 
-= 1.0.1 - 2018-01-09 =
+= 1.0.1 =
 
 * Improvement - Set cost based on drivers counts needed.
 * Improvement - Add validation for settings field: gmaps_api_key, origin_lat, origin_lng.
 
-= 1.0.0 - 2018-01-09 =
+= 1.0.0 =
 
 * Feature - Automatically split shipping for multiple items into several drivers if the package size exceeded package weight and dimensions limitation.
 * Feature - Set shipping cost per kilometer.
@@ -125,5 +129,5 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 == Upgrade Notice ==
 
-= 1.2.0 =
-This version add some improvements. Upgrade immediately.
+= 1.2.1 =
+This version include some bugs fix. Upgrade immediately.
