@@ -122,7 +122,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'default'     => '',
 			),
 			'gmaps_address_picker' => array(
-				'title' => __( 'Store Location', 'woogosend' ),
+				'title' => __( 'Store Location', 'woograbexpress' ),
 				'type'  => 'address_picker',
 			),
 			'origin_lat'           => array(
@@ -291,12 +291,12 @@ class WooGrabExpress extends WC_Shipping_Method {
 				<label for="<?php echo esc_attr( $field_key ); ?>"><?php echo wp_kses_post( $data['title'] ); ?></label>
 			</th>
 			<td class="forminp">
-				<div id="woogosend-map-wrapper" class="woogosend-map-wrapper"></div>
-				<script type="text/html" id="tmpl-woogosend-map-search">
-					<input id="{{data.map_search_id}}" class="woogosend-map-search controls" type="text" placeholder="<?php echo esc_attr( __( 'Search your store location', 'woogosend' ) ); ?>" autocomplete="off" />
+				<div id="woograbexpress-map-wrapper" class="woograbexpress-map-wrapper"></div>
+				<script type="text/html" id="tmpl-woograbexpress-map-search">
+					<input id="{{data.map_search_id}}" class="woograbexpress-map-search controls" type="text" placeholder="<?php echo esc_attr( __( 'Search your store location', 'woograbexpress' ) ); ?>" autocomplete="off" />
 				</script>
-				<script type="text/html" id="tmpl-woogosend-map-canvas">
-					<div id="{{data.map_canvas_id}}" class="woogosend-map-canvas"></div>
+				<script type="text/html" id="tmpl-woograbexpress-map-canvas">
+					<div id="{{data.map_canvas_id}}" class="woograbexpress-map-canvas"></div>
 				</script>
 			</td>
 		</tr>
