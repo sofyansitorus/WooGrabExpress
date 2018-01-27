@@ -43,7 +43,6 @@
             }
 
             $(document).on('click', '.wc-shipping-zone-method-settings', function () {
-                console.log('test');
                 if ($(this).closest('tr').find('.wc-shipping-zone-method-type').text() === woograbexpress_params.method_title) {
                     $('#' + self.mapCanvasId).remove();
                     $('#' + self.mapSearchId).remove();
