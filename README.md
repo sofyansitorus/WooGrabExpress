@@ -16,6 +16,8 @@ WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indones
 WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.
 
 Please note that this plugin is not using official Grab Indonesia API. This plugin just estimate the distance matrix using using Google Maps Distance Matrix API and then calculating the cost using the rates defined in the settings.
+
+This plugin require Google Maps Distance Matrix API Services enabled in your Google Console. [Click here](https://developers.google.com/maps/documentation/distance-matrix/get-api-key) to get API Key and to enable the services.
 ### Features ###
 * Automatically split shipping for multiple items into several drivers if the package size exceeded package weight and dimensions limitation.
 * Set shipping cost per kilometer.
@@ -93,6 +95,9 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 ## Changelog ##
 
+### 1.2.2 ###
+* Fix - Maps picker.
+
 ### 1.2.1 ###
 * Fix - Cleaning up the js code.
 
@@ -133,7 +138,7 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 ## Upgrade Notice ##
 
-### 1.2.1 ###
-This version include some bugs fix. Upgrade immediately.
+### 1.2.2 ###
+This version include bug fix Maps Picker. Upgrade immediately.
 
 
