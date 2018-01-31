@@ -112,13 +112,13 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'title'       => __( 'Title', 'woograbexpress' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woograbexpress' ),
-				'default'     => $this->method_title,
+				'default'     => 'GrabExpress',
 				'desc_tip'    => true,
 			),
 			'gmaps_api_key'        => array(
 				'title'       => __( 'API Key', 'woograbexpress' ),
 				'type'        => 'text',
-				'description' => __( '<a href="https://developers.google.com/maps/documentation/distance-matrix/get-api-key" target="_blank">Click here</a> to get a Google Maps Distance Matrix API Key.', 'woograbexpress' ),
+				'description' => __( 'This plugin require Google Maps Distance Matrix API Services enabled in your Google Console. <a href="https://developers.google.com/maps/documentation/distance-matrix/get-api-key" target="_blank">Click here</a> to get API Key and to enable the services.', 'woograbexpress' ),
 				'default'     => '',
 			),
 			'gmaps_address_picker' => array(
