@@ -1,6 +1,6 @@
 === WooGrabExpress ===
 Contributors: sofyansitorus
-Tags: woocommerce shipping,ojek online,ojek shipping,grab express,grab shipping
+Tags: woocommerce-shipping,ojek-shipping,grabexpress,grab-shipping
 Requires at least: 4.8
 Tested up to: 4.9.2
 Requires PHP: 5.6
@@ -26,7 +26,7 @@ This plugin require Google Maps Distance Matrix API Services enabled in your Goo
 * Set minimum shipping distances that allowed to use the courier.
 * Set maximum shipping distances that allowed to use the courier.
 * Set maximum package weight and dimensions that allowed to use the courier.
-* Set shipping origin info by coordinates using "Map Address Picker".
+* Set shipping origin info by location coordinates.
 * Set travel mode: Driving, Walking, Bicycling.
 * Set route restrictions: Avoid Tolls, Avoid Highways, Avoid Ferries, Avoid Indoor.
 * Set visibility distance info to customer.
@@ -60,22 +60,20 @@ You can setup the plugin setting from the Shipping Zones settings. Please check 
 [Video](https://www.youtube.com/watch?v=eThWmrnBP38) by [InMotion Hosting](https://www.inmotionhosting.com)
 
 = Where can I get support? =
-You can either create ticket at plugin support forum or GitHub repository:
+You can either support ticket at plugin support forum :
 
-* [Plugin Support Forum](https://wordpress.org/support/plugin/woograbexpress)
-* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooGrabExpress)
+* [Plugin Support Forum](https://wordpress.org/support/plugin/wcsdm)
 
 = Where can I report bugs? =
-You can either create ticket at plugin support forum or GitHub repository:
+You can report bugs at the plugin GitHub repository:
 
-* [Plugin Support Forum](https://wordpress.org/support/plugin/woograbexpress)
-* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooGrabExpress)
+* [Plugin Support Forum](https://wordpress.org/support/plugin/wcsdm)
+* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooCommerce-Shipping-Distance-Matrix)
 
-= Where can I request a feature? =
-You can either create ticket at plugin support forum or GitHub repository:
+= Can I contribute to develop this plugin? =
+I always welcome and encourage contributions to this plugin. Please visit the plugin GitHub repository:
 
-* [Plugin Support Forum](https://wordpress.org/support/plugin/woograbexpress)
-* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooGrabExpress)
+* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooCommerce-Shipping-Distance-Matrix)
 
 == Screenshots ==
 1. Settings panel: General Options
@@ -83,6 +81,10 @@ You can either create ticket at plugin support forum or GitHub repository:
 3. Shipping Calculator preview
 
 == Changelog ==
+
+= 1.2.3 =
+
+* Fix - Remove Maps Place Picker.
 
 = 1.2.2 =
 
@@ -135,5 +137,5 @@ You can either create ticket at plugin support forum or GitHub repository:
 
 == Upgrade Notice ==
 
-= 1.2.2 =
+= 1.2.3 =
 This version include bug fix Maps Picker. Upgrade immediately.
