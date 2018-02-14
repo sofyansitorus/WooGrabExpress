@@ -50,14 +50,16 @@
 					self._initGoogleMaps();
 				}
 			});
+
+			$(document).on("change", ".origin-coordinates", function() {
+				self._initGoogleMaps();
+			});
 		},
 		_initGoogleMaps: function(e) {
 			var self = this;
-			$("#" + self._inputLatId)
-				.closest("tr")
-				.hide();
-			$("#" + self._inputLngId)
-				.closest("tr")
+			$("#" + self._mapWrapperId)
+				.show()
+				.siblings(".description")
 				.hide();
 			try {
 				if (
@@ -194,15 +196,11 @@
 
 			setInterval(function() {
 				if ($(".gm-err-content").length) {
-					$("#" + self._mapCanvasId)
-						.closest("tr")
-						.hide();
-					$("#" + self._inputLatId)
-						.closest("tr")
+					$("#" + self._mapWrapperId)
+						.hide()
+						.siblings(".description")
 						.show();
-					$("#" + self._inputLngId)
-						.closest("tr")
-						.show();
+					$("#" + self._mapSearchId).remove();
 					google = undefined;
 				}
 			}, 1000);

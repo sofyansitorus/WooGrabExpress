@@ -30,6 +30,25 @@
         }
     }
 }
+#lat-lng-wrap {
+    width: 100%; overflow: hidden;
+    div{
+        width: 50%;
+        &:first-child{
+            float: left;
+        }
+        &:last-child{
+            margin-left: 50%;
+        }
+        label{
+            display: block;
+        }
+        input{
+            display: block;
+            width: 80%;
+        }
+    }
+}
 
 .pac-container {
     z-index: 999999 !important;

@@ -123,21 +123,18 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'description' => __( 'This plugin require Google Maps Distance Matrix API Services enabled in your Google Console. <a href="https://developers.google.com/maps/documentation/distance-matrix/get-api-key" target="_blank">Click here</a> to get API Key and to enable the services.', 'woograbexpress' ),
 				'default'     => '',
 			),
-			'gmaps_address_picker'    => array(
-				'title' => __( 'Store Location', 'woograbexpress' ),
-				'type'  => 'address_picker',
+			'origin'                  => array(
+				'title'       => __( 'Store Location', 'woograbexpress' ),
+				'type'        => 'address_picker',
+				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
 			),
 			'origin_lat'              => array(
-				'title'       => __( 'Store Location Latitude', 'woograbexpress' ),
-				'type'        => 'text',
-				'default'     => '',
-				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
+				'title' => __( 'Store Location Latitude', 'woograbexpress' ),
+				'type'  => 'coordinates',
 			),
 			'origin_lng'              => array(
-				'title'       => __( 'Store Location Logitude', 'woograbexpress' ),
-				'type'        => 'text',
-				'default'     => '',
-				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
+				'title' => __( 'Store Location Longitude', 'woograbexpress' ),
+				'type'  => 'coordinates',
 			),
 			'gmaps_api_mode'          => array(
 				'title'       => __( 'Travel Mode', 'woograbexpress' ),
@@ -307,6 +304,11 @@ class WooGrabExpress extends WC_Shipping_Method {
 			<td class="forminp">
 				<input type="hidden" id="map-secret-key" value="<?php echo esc_attr( WOOGRABEXPRESS_MAP_SECRET_KEY ); ?>">
 				<div id="woograbexpress-map-wrapper" class="woograbexpress-map-wrapper"></div>
+				<div id="lat-lng-wrap">
+					<div><label for="<?php echo esc_attr( $field_key ); ?>_lat"><?php echo esc_html( 'Latitude', 'woograbexpress' ); ?></label><input type="text" id="<?php echo esc_attr( $field_key ); ?>_lat" name="<?php echo esc_attr( $field_key ); ?>_lat" value="<?php echo esc_attr( $this->get_option( $key . '_lat' ) ); ?>" class="origin-coordinates"></div>
+					<div><label for="<?php echo esc_attr( $field_key ); ?>_lng"><?php echo esc_html( 'Longitude', 'woograbexpress' ); ?></label><input type="text" id="<?php echo esc_attr( $field_key ); ?>_lng" name="<?php echo esc_attr( $field_key ); ?>_lng" value="<?php echo esc_attr( $this->get_option( $key . '_lng' ) ); ?>" class="origin-coordinates"></div>
+				</div>
+				<?php echo wp_kses( $this->get_description_html( $data ), wp_kses_allowed_html( 'post' ) ); ?>
 				<script type="text/html" id="tmpl-woograbexpress-map-search">
 					<input id="{{data.map_search_id}}" class="woograbexpress-map-search controls" type="text" placeholder="<?php echo esc_attr( __( 'Search your store location', 'woograbexpress' ) ); ?>" autocomplete="off" />
 				</script>
@@ -318,6 +320,16 @@ class WooGrabExpress extends WC_Shipping_Method {
 		<?php
 		return ob_get_clean();
 	}
+
+	/**
+	 * Generate coordinates settings field.
+	 *
+	 * @since 1.2.4
+	 * @param string $key Settings field key.
+	 * @param array  $data Settings field data.
+	 */
+	public function generate_coordinates_html( $key, $data ) {}
+
 
 	/**
 	 * Validate gmaps_api_key settings field.
@@ -338,6 +350,26 @@ class WooGrabExpress extends WC_Shipping_Method {
 			$this->add_error( $e->getMessage() );
 			return $this->gmaps_api_key;
 		}
+	}
+
+	/**
+	 * Validate coordinates settings field.
+	 *
+	 * @since    1.0.0
+	 * @param  string $key Settings field key.
+	 * @param  string $value Posted field value.
+	 * @throws Exception If the field value is invalid.
+	 * @return string
+	 */
+	public function validate_coordinates_field( $key, $value ) {
+		try {
+			if ( empty( $value ) ) {
+				throw new Exception( __( 'Store Location coordinates is required', 'woograbexpress' ) );
+			}
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+		}
+		return $value;
 	}
 
 	/**

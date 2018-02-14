@@ -26,6 +26,21 @@
     .woograbexpress-map-wrapper .woograbexpress-map-search:focus {
       border-color: #4d90fe; }
 
+#lat-lng-wrap {
+  width: 100%;
+  overflow: hidden; }
+  #lat-lng-wrap div {
+    width: 50%; }
+    #lat-lng-wrap div:first-child {
+      float: left; }
+    #lat-lng-wrap div:last-child {
+      margin-left: 50%; }
+    #lat-lng-wrap div label {
+      display: block; }
+    #lat-lng-wrap div input {
+      display: block;
+      width: 80%; }
+
 .pac-container {
   z-index: 999999 !important; }
   .pac-container #type-selector {
