@@ -99,9 +99,9 @@ function woograbexpress_plugin_action_links( $links ) {
 			'<a href="' . esc_url(
 				add_query_arg(
 					array(
-						'page'               => 'wc-settings',
-						'tab'                => 'shipping',
-						'zone_id'            => $zone_id,
+						'page'                    => 'wc-settings',
+						'tab'                     => 'shipping',
+						'zone_id'                 => $zone_id,
 						'woograbexpress_settings' => true,
 					), admin_url( 'admin.php' )
 				)
