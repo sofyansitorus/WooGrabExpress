@@ -153,11 +153,12 @@ class WooGrabExpress extends WC_Shipping_Method {
 			),
 			'gmaps_api_avoid'         => array(
 				'title'       => __( 'Restrictions', 'woograbexpress' ),
-				'type'        => 'multiselect',
+				'type'        => 'select',
 				'description' => __( 'Google Maps Distance Matrix API restrictions parameter.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => 'driving',
 				'options'     => array(
+					''         => __( 'None', 'woograbexpress' ),
 					'tolls'    => __( 'Avoid Tolls', 'woograbexpress' ),
 					'highways' => __( 'Avoid Highways', 'woograbexpress' ),
 					'ferries'  => __( 'Avoid Ferries', 'woograbexpress' ),
