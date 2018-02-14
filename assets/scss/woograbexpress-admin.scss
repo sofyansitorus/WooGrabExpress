@@ -12,7 +12,7 @@
     }
     .woograbexpress-map-canvas {
         position: relative;
-        height: 300px;
+        height: 340px;
     }
     .woograbexpress-map-search {
         position: relative;
@@ -27,6 +27,25 @@
         margin-top: 10px !important;
         &:focus {
             border-color: #4d90fe;
+        }
+    }
+}
+#lat-lng-wrap {
+    width: 100%; overflow: hidden;
+    div{
+        width: 50%;
+        &:first-child{
+            float: left;
+        }
+        &:last-child{
+            margin-left: 50%;
+        }
+        label{
+            display: block;
+        }
+        input{
+            display: block;
+            width: 80%;
         }
     }
 }

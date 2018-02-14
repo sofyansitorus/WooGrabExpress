@@ -76,23 +76,25 @@ class WooGrabExpress extends WC_Shipping_Method {
 		$this->init_settings(); // This is part of the settings API. Loads settings you previously init.
 
 		// Define user set variables.
-		$this->title           = $this->get_option( 'title', 'GrabExpress' );
-		$this->gmaps_api_key   = $this->get_option( 'gmaps_api_key' );
-		$this->origin_lat      = $this->get_option( 'origin_lat' );
-		$this->origin_lng      = $this->get_option( 'origin_lng' );
-		$this->gmaps_api_mode  = $this->get_option( 'gmaps_api_mode' );
-		$this->gmaps_api_avoid = $this->get_option( 'gmaps_api_avoid' );
-		$this->cost_per_km     = $this->get_option( 'cost_per_km' );
-		$this->min_cost        = $this->get_option( 'min_cost' );
-		$this->max_cost        = $this->get_option( 'max_cost' );
-		$this->max_width       = $this->get_option( 'max_width' );
-		$this->max_length      = $this->get_option( 'max_length' );
-		$this->max_height      = $this->get_option( 'max_height' );
-		$this->max_weight      = $this->get_option( 'max_weight' );
-		$this->min_distance    = $this->get_option( 'min_distance' );
-		$this->max_distance    = $this->get_option( 'max_distance' );
-		$this->show_distance   = $this->get_option( 'show_distance' );
-		$this->tax_status      = $this->get_option( 'tax_status' );
+		$this->title                   = $this->get_option( 'title', 'GrabExpress' );
+		$this->gmaps_api_key           = $this->get_option( 'gmaps_api_key' );
+		$this->origin_lat              = $this->get_option( 'origin_lat' );
+		$this->origin_lng              = $this->get_option( 'origin_lng' );
+		$this->gmaps_api_units         = $this->get_option( 'gmaps_api_units', 'metric' );
+		$this->gmaps_api_mode          = $this->get_option( 'gmaps_api_mode' );
+		$this->gmaps_api_avoid         = $this->get_option( 'gmaps_api_avoid' );
+		$this->tax_status              = $this->get_option( 'tax_status' );
+		$this->enable_fallback_request = $this->get_option( 'enable_fallback_request', 'no' );
+		$this->cost_per_km             = $this->get_option( 'cost_per_km' );
+		$this->min_cost                = $this->get_option( 'min_cost' );
+		$this->max_cost                = $this->get_option( 'max_cost' );
+		$this->max_width               = $this->get_option( 'max_width' );
+		$this->max_length              = $this->get_option( 'max_length' );
+		$this->max_height              = $this->get_option( 'max_height' );
+		$this->max_weight              = $this->get_option( 'max_weight' );
+		$this->min_distance            = $this->get_option( 'min_distance' );
+		$this->max_distance            = $this->get_option( 'max_distance' );
+		$this->show_distance           = $this->get_option( 'show_distance' );
 
 		// Save settings in admin if you have any defined.
 		add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
@@ -108,32 +110,33 @@ class WooGrabExpress extends WC_Shipping_Method {
 	 */
 	public function init_form_fields() {
 		$this->instance_form_fields = array(
-			'title'             => array(
+			'title'                   => array(
 				'title'       => __( 'Title', 'woograbexpress' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woograbexpress' ),
 				'default'     => 'GrabExpress',
 				'desc_tip'    => true,
 			),
-			'gmaps_api_key'     => array(
+			'gmaps_api_key'           => array(
 				'title'       => __( 'Google Maps Distance Matrix API', 'woograbexpress' ),
 				'type'        => 'text',
 				'description' => __( 'This plugin require Google Maps Distance Matrix API Services enabled in your Google Console. <a href="https://developers.google.com/maps/documentation/distance-matrix/get-api-key" target="_blank">Click here</a> to get API Key and to enable the services.', 'woograbexpress' ),
 				'default'     => '',
 			),
-			'origin_lat'        => array(
-				'title'       => __( 'Store Location Latitude', 'woograbexpress' ),
-				'type'        => 'decimal',
+			'origin'                  => array(
+				'title'       => __( 'Store Location', 'woograbexpress' ),
+				'type'        => 'address_picker',
 				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
-				'default'     => '',
 			),
-			'origin_lng'        => array(
-				'title'       => __( 'Store Location Longitude', 'woograbexpress' ),
-				'type'        => 'decimal',
-				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
-				'default'     => '',
+			'origin_lat'              => array(
+				'title' => __( 'Store Location Latitude', 'woograbexpress' ),
+				'type'  => 'coordinates',
 			),
-			'gmaps_api_mode'    => array(
+			'origin_lng'              => array(
+				'title' => __( 'Store Location Longitude', 'woograbexpress' ),
+				'type'  => 'coordinates',
+			),
+			'gmaps_api_mode'          => array(
 				'title'       => __( 'Travel Mode', 'woograbexpress' ),
 				'type'        => 'select',
 				'description' => __( 'Google Maps Distance Matrix API travel mode parameter.', 'woograbexpress' ),
@@ -145,20 +148,21 @@ class WooGrabExpress extends WC_Shipping_Method {
 					'bicycling' => __( 'Bicycling', 'woograbexpress' ),
 				),
 			),
-			'gmaps_api_avoid'   => array(
+			'gmaps_api_avoid'         => array(
 				'title'       => __( 'Restrictions', 'woograbexpress' ),
-				'type'        => 'multiselect',
+				'type'        => 'select',
 				'description' => __( 'Google Maps Distance Matrix API restrictions parameter.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => 'driving',
 				'options'     => array(
+					''         => __( 'None', 'woograbexpress' ),
 					'tolls'    => __( 'Avoid Tolls', 'woograbexpress' ),
 					'highways' => __( 'Avoid Highways', 'woograbexpress' ),
 					'ferries'  => __( 'Avoid Ferries', 'woograbexpress' ),
 					'indoor'   => __( 'Avoid Indoor', 'woograbexpress' ),
 				),
 			),
-			'tax_status'        => array(
+			'tax_status'              => array(
 				'title'   => __( 'Tax status', 'woograbexpress' ),
 				'type'    => 'select',
 				'class'   => 'wc-enhanced-select',
@@ -168,88 +172,95 @@ class WooGrabExpress extends WC_Shipping_Method {
 					'none'    => __( 'None', 'woograbexpress' ),
 				),
 			),
-			'grabexpress_title' => array(
+			'enable_fallback_request' => array(
+				'title'       => __( 'Enable Fallback Request', 'woograbexpress' ),
+				'label'       => __( 'Yes', 'woograbexpress' ),
+				'type'        => 'checkbox',
+				'description' => __( 'If there is no results for API request using full address, the system will attempt to make another API request to the Google API server without "Address Line 1" parameter. The fallback request will only using "Address Line 2", "City", "State/Province", "Postal Code" and "Country" parameters.', 'woograbexpress' ),
+				'desc_tip'    => true,
+			),
+			'grabexpress_title'       => array(
 				'title'       => __( 'GrabExpress Service Options', 'woograbexpress' ),
 				'type'        => 'title',
 				'description' => __( '<a href="https://www.grab.com/id/express/" target="_blank">Click here</a> for more info about GrabExpress.', 'woograbexpress' ),
 			),
-			'cost_per_km'       => array(
+			'cost_per_km'             => array(
 				'title'       => __( 'Cost per Kilometer', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Per kilometer rates that will be billed to customer.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => '2500',
 			),
-			'min_cost'          => array(
+			'min_cost'                => array(
 				'title'       => __( 'Minimum Cost', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Minimum shipping cost that will be billed to customer. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => '15000',
 			),
-			'max_cost'          => array(
+			'max_cost'                => array(
 				'title'       => __( 'Maximum Cost', 'woograbexpress' ),
 				'type'        => 'price',
 				'description' => __( 'Maximum shipping cost that will be billed to customer. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'    => true,
 				'default'     => '',
 			),
-			'max_weight'        => array(
-				'title'             => __( 'Maximum Package Weight', 'woograbexpress' ),
+			'max_weight'              => array(
+				'title'             => __( 'Maximum Package Weight', 'woograbexpress' ) . ' (kg)',
 				'type'              => 'number',
 				'description'       => __( 'Maximum package weight in kilograms that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
 				'default'           => '5',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_width'         => array(
-				'title'             => __( 'Maximum Package Width', 'woograbexpress' ),
+			'max_width'               => array(
+				'title'             => __( 'Maximum Package Width', 'woograbexpress' ) . ' (cm)',
 				'type'              => 'number',
 				'description'       => __( 'Maximum package size width in centimeters that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
 				'default'           => '25',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_length'        => array(
-				'title'             => __( 'Maximum Package Length', 'woograbexpress' ),
+			'max_length'              => array(
+				'title'             => __( 'Maximum Package Length', 'woograbexpress' ) . ' (cm)',
 				'type'              => 'number',
 				'description'       => __( 'Maximum package size length in centimeters that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
 				'default'           => '32',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_height'        => array(
-				'title'             => __( 'Maximum Package Height', 'woograbexpress' ),
+			'max_height'              => array(
+				'title'             => __( 'Maximum Package Height', 'woograbexpress' ) . ' (cm)',
 				'type'              => 'number',
 				'description'       => __( 'Maximum package size height in centimeters that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
 				'default'           => '12',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'min_distance'      => array(
-				'title'             => __( 'Minimum Distance', 'woograbexpress' ),
+			'min_distance'            => array(
+				'title'             => __( 'Minimum Distance', 'woograbexpress' ) . ' (km)',
 				'type'              => 'number',
 				'description'       => __( 'Minimum distance in kilometers that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
 				'default'           => '1',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'max_distance'      => array(
-				'title'             => __( 'Maximum Distance', 'woograbexpress' ),
+			'max_distance'            => array(
+				'title'             => __( 'Maximum Distance', 'woograbexpress' ) . ' (km)',
 				'type'              => 'number',
 				'description'       => __( 'Maximum distance in kilometers that will be allowed to use this courier. Leave blank to disable.', 'woograbexpress' ),
 				'desc_tip'          => true,
 				'default'           => '40',
 				'custom_attributes' => array( 'min' => '1' ),
 			),
-			'show_distance'     => array(
+			'show_distance'           => array(
 				'title'       => __( 'Show Distance', 'woograbexpress' ),
 				'label'       => __( 'Yes', 'woograbexpress' ),
 				'type'        => 'checkbox',
 				'description' => __( 'Show the distance info to customer during checkout.', 'woograbexpress' ),
 				'desc_tip'    => true,
 			),
-			'multiple_drivers'  => array(
+			'multiple_drivers'        => array(
 				'title'       => __( 'Multiple Drivers', 'woograbexpress' ),
 				'label'       => __( 'Enable', 'woograbexpress' ),
 				'type'        => 'checkbox',
@@ -258,6 +269,67 @@ class WooGrabExpress extends WC_Shipping_Method {
 			),
 		);
 	}
+
+	/**
+	 * Generate origin settings field.
+	 *
+	 * @since 1.2.4
+	 * @param string $key Settings field key.
+	 * @param array  $data Settings field data.
+	 */
+	public function generate_address_picker_html( $key, $data ) {
+		$field_key = $this->get_field_key( $key );
+
+		$defaults = array(
+			'title'             => '',
+			'disabled'          => false,
+			'class'             => '',
+			'css'               => '',
+			'placeholder'       => '',
+			'type'              => 'text',
+			'desc_tip'          => false,
+			'description'       => '',
+			'custom_attributes' => array(),
+			'options'           => array(),
+		);
+
+		$data = wp_parse_args( $data, $defaults );
+
+		ob_start(); ?>
+		<tr valign="top">
+			<th scope="row" class="titledesc">
+				<?php echo esc_html( $this->get_tooltip_html( $data ) ); ?>
+				<label for="<?php echo esc_attr( $field_key ); ?>"><?php echo wp_kses_post( $data['title'] ); ?></label>
+			</th>
+			<td class="forminp">
+				<input type="hidden" id="map-secret-key" value="<?php echo esc_attr( WOOGRABEXPRESS_MAP_SECRET_KEY ); ?>">
+				<div id="woograbexpress-map-wrapper" class="woograbexpress-map-wrapper"></div>
+				<div id="lat-lng-wrap">
+					<div><label for="<?php echo esc_attr( $field_key ); ?>_lat"><?php echo esc_html( 'Latitude', 'woograbexpress' ); ?></label><input type="text" id="<?php echo esc_attr( $field_key ); ?>_lat" name="<?php echo esc_attr( $field_key ); ?>_lat" value="<?php echo esc_attr( $this->get_option( $key . '_lat' ) ); ?>" class="origin-coordinates"></div>
+					<div><label for="<?php echo esc_attr( $field_key ); ?>_lng"><?php echo esc_html( 'Longitude', 'woograbexpress' ); ?></label><input type="text" id="<?php echo esc_attr( $field_key ); ?>_lng" name="<?php echo esc_attr( $field_key ); ?>_lng" value="<?php echo esc_attr( $this->get_option( $key . '_lng' ) ); ?>" class="origin-coordinates"></div>
+				</div>
+				<?php echo wp_kses( $this->get_description_html( $data ), wp_kses_allowed_html( 'post' ) ); ?>
+				<script type="text/html" id="tmpl-woograbexpress-map-search">
+					<input id="{{data.map_search_id}}" class="woograbexpress-map-search controls" type="text" placeholder="<?php echo esc_attr( __( 'Search your store location', 'woograbexpress' ) ); ?>" autocomplete="off" />
+				</script>
+				<script type="text/html" id="tmpl-woograbexpress-map-canvas">
+					<div id="{{data.map_canvas_id}}" class="woograbexpress-map-canvas"></div>
+				</script>
+			</td>
+		</tr>
+		<?php
+		return ob_get_clean();
+	}
+
+	/**
+	 * Generate coordinates settings field.
+	 *
+	 * @since 1.2.4
+	 * @param string $key Settings field key.
+	 * @param array  $data Settings field data.
+	 */
+	public function generate_coordinates_html( $key, $data ) {}
+
 
 	/**
 	 * Validate gmaps_api_key settings field.
@@ -278,6 +350,26 @@ class WooGrabExpress extends WC_Shipping_Method {
 			$this->add_error( $e->getMessage() );
 			return $this->gmaps_api_key;
 		}
+	}
+
+	/**
+	 * Validate coordinates settings field.
+	 *
+	 * @since    1.0.0
+	 * @param  string $key Settings field key.
+	 * @param  string $value Posted field value.
+	 * @throws Exception If the field value is invalid.
+	 * @return string
+	 */
+	public function validate_coordinates_field( $key, $value ) {
+		try {
+			if ( empty( $value ) ) {
+				throw new Exception( __( 'Store Location coordinates is required', 'woograbexpress' ) );
+			}
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+		}
+		return $value;
 	}
 
 	/**
@@ -356,7 +448,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 			return;
 		}
 
-		$api_request = $this->api_request( $package['destination'] );
+		$api_request = $this->api_request( $package );
 		if ( ! $api_request ) {
 			return;
 		}
@@ -535,102 +627,73 @@ class WooGrabExpress extends WC_Shipping_Method {
 		return $drivers_count;
 	}
 
+
+
 	/**
 	 * Making HTTP request to Google Maps Distance Matrix API
 	 *
 	 * @since    1.0.0
-	 * @param array $destination Destination info in assciative array: address, address_2, city, state, postcode, country.
+	 * @param array $package The cart content data.
 	 * @return array
 	 */
-	private function api_request( $destination ) {
-
+	private function api_request( $package ) {
 		if ( empty( $this->gmaps_api_key ) ) {
 			return false;
 		}
 
-		$destination = $this->get_destination_info( $destination );
-		if ( empty( $destination ) ) {
+		$destination_info = $this->get_destination_info( $package['destination'] );
+		if ( empty( $destination_info ) ) {
 			return false;
 		}
 
-		$origins = $this->get_origin_info();
-		if ( empty( $origins ) ) {
+		$origin_info = $this->get_origin_info( $package );
+		if ( empty( $origin_info ) ) {
 			return false;
 		}
 
-		$cache_keys = array(
-			$this->gmaps_api_key,
-			$destination,
-			$origins,
-			$this->gmaps_api_mode,
+		$request_url_args = array(
+			'key'          => rawurlencode( $this->gmaps_api_key ),
+			'mode'         => rawurlencode( $this->gmaps_api_mode ),
+			'avoid'        => is_string( $this->gmaps_api_avoid ) ? rawurlencode( $this->gmaps_api_avoid ) : '',
+			'units'        => rawurlencode( $this->gmaps_api_units ),
+			'language'     => rawurlencode( get_locale() ),
+			'origins'      => rawurlencode( implode( ',', $origin_info ) ),
+			'destinations' => rawurlencode( implode( ',', $destination_info ) ),
 		);
 
-		$route_avoid = $this->gmaps_api_avoid;
-		if ( is_array( $route_avoid ) ) {
-			$route_avoid = implode( ',', $route_avoid );
-		}
-		if ( $route_avoid ) {
-			array_push( $cache_keys, $route_avoid );
-		}
-
-		$cache_key = implode( '_', $cache_keys );
+		$transient_key = $this->id . '_api_request_' . md5( wp_json_encode( $request_url_args ) );
 
 		// Check if the data already chached and return it.
-		$cached_data = wp_cache_get( $cache_key, $this->id );
+		$cached_data = get_transient( $transient_key );
+
 		if ( false !== $cached_data ) {
-			$this->show_debug( 'Google Maps Distance Matrix API cache key: ' . $cache_key );
-			$this->show_debug( 'Cached Google Maps Distance Matrix API response: ' . wp_json_encode( $cached_data ) );
+			$this->show_debug( __( 'Cached key', 'woograbexpress' ) . ': ' . $transient_key );
+			$this->show_debug( __( 'Cached data', 'woograbexpress' ) . ': ' . wp_json_encode( $cached_data ) );
 			return $cached_data;
 		}
 
-		$request_url = add_query_arg(
-			array(
-				'key'          => rawurlencode( $this->gmaps_api_key ),
-				'units'        => rawurlencode( 'metric' ),
-				'mode'         => rawurlencode( $this->gmaps_api_mode ),
-				'avoid'        => rawurlencode( $route_avoid ),
-				'destinations' => rawurlencode( $destination ),
-				'origins'      => rawurlencode( $origins ),
-			),
-			$this->google_api_url
-		);
-		$this->show_debug( 'Google Maps Distance Matrix API request URL: ' . $request_url );
+		$request_url = add_query_arg( $request_url_args, $this->google_api_url );
 
-		$response = wp_remote_retrieve_body( wp_remote_get( esc_url_raw( $request_url ) ) );
-		$this->show_debug( 'Google Maps Distance Matrix API response: ' . $response );
+		$this->show_debug( __( 'API Request URL', 'woograbexpress' ) . ': ' . str_replace( rawurlencode( $this->gmaps_api_key ), '**********', $request_url ), 'notice' );
 
-		$response = json_decode( $response, true );
+		$data = $this->process_api_response( wp_remote_get( esc_url_raw( $request_url ) ) );
 
-		if ( json_last_error() !== JSON_ERROR_NONE || empty( $response['rows'] ) ) {
-			return false;
+		// Try to make fallback request if no results found.
+		if ( ! $data && 'yes' === $this->enable_fallback_request && ! empty( $destination_info['address_2'] ) ) {
+			unset( $destination_info['address'] );
+			$request_url_args['destinations'] = rawurlencode( implode( ',', $destination_info ) );
+
+			$request_url = add_query_arg( $request_url_args, $this->google_api_url );
+
+			$this->show_debug( __( 'API Fallback Request URL', 'woograbexpress' ) . ': ' . str_replace( rawurlencode( $this->gmaps_api_key ), '**********', $request_url ), 'notice' );
+
+			$data = $this->process_api_response( wp_remote_get( esc_url_raw( $request_url ) ) );
 		}
 
-		if ( empty( $response['destination_addresses'] ) || empty( $response['origin_addresses'] ) ) {
-			return false;
-		}
+		if ( $data ) {
 
-		$distance = 0;
-
-		foreach ( $response['rows'] as $rows ) {
-			foreach ( $rows['elements'] as $element ) {
-				if ( 'OK' === $element['status'] ) {
-					$element_distance = ceil( str_replace( ' km', '', $element['distance']['text'] ) );
-					if ( $element_distance > $distance ) {
-						$distance      = $element_distance;
-						$distance_text = $distance . ' km';
-					}
-				}
-			}
-		}
-
-		if ( $distance ) {
-			$data = array(
-				'distance'      => $distance,
-				'distance_text' => $distance_text,
-				'response'      => $response,
-			);
-
-			wp_cache_set( $cache_key, $data, $this->id ); // Store the data to WP Object Cache for later use.
+			delete_transient( $transient_key ); // To make sure the transient data re-created, delete it first.
+			set_transient( $transient_key, $data, HOUR_IN_SECONDS ); // Store the data to transient with expiration in 1 hour for later use.
 
 			return $data;
 		}
@@ -639,16 +702,118 @@ class WooGrabExpress extends WC_Shipping_Method {
 	}
 
 	/**
+	 * Process API Response.
+	 *
+	 * @since 1.2.4
+	 * @param array $raw_response HTTP API response.
+	 * @return array|bool Formatted response data, false on failure.
+	 */
+	private function process_api_response( $raw_response ) {
+
+		$distance      = 0;
+		$distance_text = '';
+		$error_message = '';
+
+		// Check if HTTP request is error.
+		if ( is_wp_error( $raw_response ) ) {
+			$this->show_debug( $raw_response->get_error_message(), 'notice' );
+			return false;
+		}
+
+		$response_body = wp_remote_retrieve_body( $raw_response );
+
+		// Check if API response is empty.
+		if ( empty( $response_body ) ) {
+			$this->show_debug( __( 'API response is empty', 'woograbexpress' ), 'notice' );
+			return false;
+		}
+
+		$response_data = json_decode( $response_body, true );
+
+		// Check if JSON data is valid.
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
+			if ( function_exists( 'json_last_error_msg' ) ) {
+				$this->show_debug( __( 'Error while decoding API response', 'woograbexpress' ) . ': ' . json_last_error_msg(), 'notice' );
+			}
+			return false;
+		}
+
+		// Check API response is OK.
+		$status = isset( $response_data['status'] ) ? $response_data['status'] : '';
+		if ( 'OK' !== $status ) {
+			$error_message = __( 'API Response Error', 'woograbexpress' ) . ': ' . $status;
+			if ( isset( $response_data['error_message'] ) ) {
+				$error_message .= ' - ' . $response_data['error_message'];
+			}
+			$this->show_debug( $error_message, 'notice' );
+			return false;
+		}
+
+		$element_lvl_errors = array(
+			'NOT_FOUND'                 => __( 'Origin and/or destination of this pairing could not be geocoded', 'woograbexpress' ),
+			'ZERO_RESULTS'              => __( 'No route could be found between the origin and destination', 'woograbexpress' ),
+			'MAX_ROUTE_LENGTH_EXCEEDED' => __( 'Requested route is too long and cannot be processed', 'woograbexpress' ),
+		);
+
+		// Get the shipping distance.
+		foreach ( $response_data['rows'] as $row ) {
+
+			// Berak the loop is distance is defined.
+			if ( $distance ) {
+				break;
+			}
+
+			foreach ( $row['elements'] as $element ) {
+
+				// Berak the loop is distance is defined.
+				if ( $distance ) {
+					break;
+				}
+
+				switch ( $element['status'] ) {
+					case 'OK':
+						if ( isset( $element['distance']['value'] ) && ! empty( $element['distance']['value'] ) ) {
+							$distance      = $this->convert_m( $element['distance']['value'] );
+							$distance_text = $element['distance']['text'];
+						}
+						break;
+					default:
+						$error_message = __( 'API Response Error', 'woograbexpress' ) . ': ' . $element['status'];
+						if ( isset( $element_lvl_errors[ $element['status'] ] ) ) {
+							$error_message .= ' - ' . $element_lvl_errors[ $element['status'] ];
+						}
+						break;
+				}
+			}
+		}
+
+		if ( ! $distance ) {
+			if ( $error_message ) {
+				$this->show_debug( $error_message, 'notice' );
+			}
+			return false;
+		}
+
+		return array(
+			'distance'      => $distance,
+			'distance_text' => $distance_text,
+			'response'      => $response_data,
+		);
+	}
+
+	/**
 	 * Get shipping origin info
 	 *
 	 * @since    1.0.0
-	 * @return string
+	 * @param array $package The cart content data.
+	 * @return array
 	 */
-	private function get_origin_info() {
+	private function get_origin_info( $package ) {
 		$origin_info = array();
 
 		if ( ! empty( $this->origin_lat ) && ! empty( $this->origin_lng ) ) {
-			array_push( $origin_info, $this->origin_lat, $this->origin_lng );
+			$origin_info['lat'] = $this->origin_lat;
+			$origin_info['lng'] = $this->origin_lng;
 		}
 
 		/**
@@ -660,11 +825,11 @@ class WooGrabExpress extends WC_Shipping_Method {
 		 *
 		 *      add_action( 'woocommerce_woograbexpress_shipping_origin_info', 'modify_shipping_origin_info', 10, 2 );
 		 *
-		 *      function modify_shipping_origin_info( $origin_info, $method ) {
+		 *      function modify_shipping_origin_info( $origin_info, $package ) {
 		 *          return '1600 Amphitheatre Parkway,Mountain View,CA,94043';
 		 *      }
 		 */
-		return apply_filters( 'woocommerce_' . $this->id . '_shipping_origin_info', implode( ',', $origin_info ), $this );
+		return apply_filters( 'woocommerce_' . $this->id . '_shipping_origin_info', $origin_info, $package );
 	}
 
 	/**
@@ -680,7 +845,7 @@ class WooGrabExpress extends WC_Shipping_Method {
 		$keys = array( 'address', 'address_2', 'city', 'state', 'postcode', 'country' );
 
 		// Remove destination field keys for shipping calculator request.
-		if ( ! empty( $_POST['calc_shipping'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'woocommerce-cart' ) ) {
+		if ( isset( $_POST['calc_shipping'], $_POST['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'woocommerce-cart' ) ) {
 			$keys_remove = array( 'address', 'address_2' );
 			if ( ! apply_filters( 'woocommerce_shipping_calculator_enable_city', false ) ) {
 				array_push( $keys_remove, 'city' );
@@ -702,18 +867,18 @@ class WooGrabExpress extends WC_Shipping_Method {
 					if ( empty( $country_code ) ) {
 						$country_code = $data[ $key ];
 					}
-					$full_country       = isset( WC()->countries->countries[ $country_code ] ) ? WC()->countries->countries[ $country_code ] : $country_code;
-					$destination_info[] = trim( $full_country );
+					$full_country             = isset( WC()->countries->countries[ $country_code ] ) ? WC()->countries->countries[ $country_code ] : $country_code;
+					$destination_info[ $key ] = trim( $full_country );
 					break;
 				case 'state':
 					if ( empty( $country_code ) ) {
 						$country_code = $data['country'];
 					}
-					$full_state         = isset( WC()->countries->states[ $country_code ][ $data[ $key ] ] ) ? WC()->countries->states[ $country_code ][ $data[ $key ] ] : $data[ $key ];
-					$destination_info[] = trim( $full_state );
+					$full_state               = isset( WC()->countries->states[ $country_code ][ $data[ $key ] ] ) ? WC()->countries->states[ $country_code ][ $data[ $key ] ] : $data[ $key ];
+					$destination_info[ $key ] = trim( $full_state );
 					break;
 				default:
-					$destination_info[] = trim( $data[ $key ] );
+					$destination_info[ $key ] = trim( $data[ $key ] );
 					break;
 			}
 		}
@@ -727,11 +892,44 @@ class WooGrabExpress extends WC_Shipping_Method {
 		 *
 		 *      add_action( 'woocommerce_woograbexpress_shipping_destination_info', 'modify_shipping_destination_info', 10, 2 );
 		 *
-		 *      function modify_shipping_destination_info( $destination_info, $method ) {
+		 *      function modify_shipping_destination_info( $destination_info, $destination_info_arr ) {
 		 *          return '1600 Amphitheatre Parkway,Mountain View,CA,94043';
 		 *      }
 		 */
-		return apply_filters( 'woocommerce_' . $this->id . '_shipping_destination_info', implode( ',', $destination_info ), $this );
+		return apply_filters( 'woocommerce_' . $this->id . '_shipping_destination_info', $destination_info, $this );
+	}
+
+	/**
+	 * Convert Meters to Distance Unit
+	 *
+	 * @since    1.2.4
+	 * @param int $meters Number of meters to convert.
+	 * @return int
+	 */
+	private function convert_m( $meters ) {
+		return ( 'metric' === $this->gmaps_api_units ) ? $this->convert_m_to_km( $meters ) : $this->convert_m_to_mi( $meters );
+	}
+
+	/**
+	 * Convert Meters to Miles
+	 *
+	 * @since    1.2.4
+	 * @param int $meters Number of meters to convert.
+	 * @return int
+	 */
+	private function convert_m_to_mi( $meters ) {
+		return $meters * 0.000621371;
+	}
+
+	/**
+	 * Convert Meters to Kilometres
+	 *
+	 * @since    1.2.4
+	 * @param int $meters Number of meters to convert.
+	 * @return int
+	 */
+	private function convert_m_to_km( $meters ) {
+		return $meters * 0.001;
 	}
 
 	/**

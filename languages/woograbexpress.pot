@@ -1,266 +1,296 @@
-#, fuzzy
+# Copyright (C) 2018 WooGrabExpress
+# This file is distributed under the same license as the WooGrabExpress package.
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Project-Id-Version: WooGrabExpress\n"
-"POT-Creation-Date: 2018-01-16 03:02+0700\n"
-"PO-Revision-Date: 2018-01-16 03:02+0700\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: WooGrabExpress 1.2.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woograbexpress\n"
+"POT-Creation-Date: 2018-02-14 13:00:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: woograbexpress.php\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: includes/class-woograbexpress.php:52
-msgid "Shipping rates calculator for GrabExpress courier from Grab Indonesia."
-msgstr ""
-
-#: includes/class-woograbexpress.php:112
-msgid "Title"
+msgid "Per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier."
 msgstr ""
 
 #: includes/class-woograbexpress.php:114
+msgid "Title"
+msgstr ""
+
+#: includes/class-woograbexpress.php:116
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 
-#: includes/class-woograbexpress.php:119
-msgid "API Key"
-msgstr ""
-
 #: includes/class-woograbexpress.php:121
-msgid ""
-"<a href=\"https://developers.google.com/maps/documentation/distance-matrix/"
-"get-api-key\" target=\"_blank\">Click here</a> to get a Google Maps Distance "
-"Matrix API Key."
+msgid "Google Maps Distance Matrix API"
 msgstr ""
 
-#: includes/class-woograbexpress.php:125
-msgid "Travel Mode"
+#: includes/class-woograbexpress.php:123
+msgid "This plugin require Google Maps Distance Matrix API Services enabled in your Google Console. <a href=\"https://developers.google.com/maps/documentation/distance-matrix/get-api-key\" target=\"_blank\">Click here</a> to get API Key and to enable the services."
 msgstr ""
 
 #: includes/class-woograbexpress.php:127
-msgid "Google Maps Distance Matrix API travel mode parameter."
+msgid "Store Location"
 msgstr ""
 
-#: includes/class-woograbexpress.php:131
-msgid "Driving"
+#: includes/class-woograbexpress.php:129
+msgid "<a href=\"http://www.latlong.net/\" target=\"_blank\">Click here</a> to get your store location coordinates info."
 msgstr ""
 
 #: includes/class-woograbexpress.php:132
-msgid "Walking"
-msgstr ""
-
-#: includes/class-woograbexpress.php:133
-msgid "Bicycling"
-msgstr ""
-
-#: includes/class-woograbexpress.php:137
-msgid "Restrictions"
-msgstr ""
-
-#: includes/class-woograbexpress.php:139
-msgid "Google Maps Distance Matrix API restrictions parameter."
-msgstr ""
-
-#: includes/class-woograbexpress.php:143
-msgid "Avoid Tolls"
-msgstr ""
-
-#: includes/class-woograbexpress.php:144
-msgid "Avoid Highways"
-msgstr ""
-
-#: includes/class-woograbexpress.php:145
-msgid "Avoid Ferries"
-msgstr ""
-
-#: includes/class-woograbexpress.php:146
-msgid "Avoid Indoor"
-msgstr ""
-
-#: includes/class-woograbexpress.php:150
 msgid "Store Location Latitude"
 msgstr ""
 
-#: includes/class-woograbexpress.php:152 includes/class-woograbexpress.php:158
-msgid ""
-"<a href=\"http://www.latlong.net/\" target=\"_blank\">Click here</a> to get "
-"your store location coordinates info."
-msgstr ""
-
-#: includes/class-woograbexpress.php:156
+#: includes/class-woograbexpress.php:136
 msgid "Store Location Longitude"
 msgstr ""
 
-#: includes/class-woograbexpress.php:162
-msgid "Tax status"
+#: includes/class-woograbexpress.php:140
+msgid "Travel Mode"
 msgstr ""
 
-#: includes/class-woograbexpress.php:167
-msgid "Taxable"
+#: includes/class-woograbexpress.php:142
+msgid "Google Maps Distance Matrix API travel mode parameter."
 msgstr ""
 
-#: includes/class-woograbexpress.php:168
+#: includes/class-woograbexpress.php:146
+msgid "Driving"
+msgstr ""
+
+#: includes/class-woograbexpress.php:147
+msgid "Walking"
+msgstr ""
+
+#: includes/class-woograbexpress.php:148
+msgid "Bicycling"
+msgstr ""
+
+#: includes/class-woograbexpress.php:152
+msgid "Restrictions"
+msgstr ""
+
+#: includes/class-woograbexpress.php:154
+msgid "Google Maps Distance Matrix API restrictions parameter."
+msgstr ""
+
+#: includes/class-woograbexpress.php:158 includes/class-woograbexpress.php:172
 msgid "None"
 msgstr ""
 
-#: includes/class-woograbexpress.php:172
-msgid "GrabExpress Service Options"
+#: includes/class-woograbexpress.php:159
+msgid "Avoid Tolls"
 msgstr ""
 
-#: includes/class-woograbexpress.php:174
-msgid ""
-"<a href=\"https://www.grab.com/id/express/\" target=\"_blank\">Click here</"
-"a> for more info about GrabExpress."
+#: includes/class-woograbexpress.php:160
+msgid "Avoid Highways"
 msgstr ""
 
-#: includes/class-woograbexpress.php:177
-msgid "Cost per Kilometer"
+#: includes/class-woograbexpress.php:161
+msgid "Avoid Ferries"
 msgstr ""
 
-#: includes/class-woograbexpress.php:179
-msgid "Per kilometer rates that will be billed to customer."
+#: includes/class-woograbexpress.php:162
+msgid "Avoid Indoor"
 msgstr ""
 
-#: includes/class-woograbexpress.php:184
-msgid "Minimum Cost"
+#: includes/class-woograbexpress.php:166
+msgid "Tax status"
 msgstr ""
 
-#: includes/class-woograbexpress.php:186
-msgid ""
-"Minimum shipping cost that will be billed to customer. Leave blank to "
-"disable."
+#: includes/class-woograbexpress.php:171
+msgid "Taxable"
 msgstr ""
 
-#: includes/class-woograbexpress.php:191
-msgid "Maximum Cost"
+#: includes/class-woograbexpress.php:176
+msgid "Enable Fallback Request"
 msgstr ""
 
-#: includes/class-woograbexpress.php:193
-msgid ""
-"Maximum shipping cost that will be billed to customer. Leave blank to "
-"disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:198
-msgid "Maximum Package Weight"
-msgstr ""
-
-#: includes/class-woograbexpress.php:200
-msgid ""
-"Maximum package weight in kilograms that will be allowed to use this "
-"courier. Leave blank to disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:206
-msgid "Maximum Package Width"
-msgstr ""
-
-#: includes/class-woograbexpress.php:208
-msgid ""
-"Maximum package size width in centimeters that will be allowed to use this "
-"courier. Leave blank to disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:214
-msgid "Maximum Package Length"
-msgstr ""
-
-#: includes/class-woograbexpress.php:216
-msgid ""
-"Maximum package size length in centimeters that will be allowed to use this "
-"courier. Leave blank to disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:222
-msgid "Maximum Package Height"
-msgstr ""
-
-#: includes/class-woograbexpress.php:224
-msgid ""
-"Maximum package size height in centimeters that will be allowed to use this "
-"courier. Leave blank to disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:230
-msgid "Minimum Distance"
-msgstr ""
-
-#: includes/class-woograbexpress.php:232
-msgid ""
-"Minimum distance in kilometers that will be allowed to use this courier. "
-"Leave blank to disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:238
-msgid "Maximum Distance"
-msgstr ""
-
-#: includes/class-woograbexpress.php:240
-msgid ""
-"Maximum distance in kilometers that will be allowed to use this courier. "
-"Leave blank to disable."
-msgstr ""
-
-#: includes/class-woograbexpress.php:246
-msgid "Show Distance"
-msgstr ""
-
-#: includes/class-woograbexpress.php:247
+#: includes/class-woograbexpress.php:177 includes/class-woograbexpress.php:258
 msgid "Yes"
 msgstr ""
 
+#: includes/class-woograbexpress.php:179
+msgid "If there is no results for API request using full address, the system will attempt to make another API request to the Google API server without \"Address Line 1\" parameter. The fallback request will only using \"Address Line 2\", \"City\", \"State/Province\", \"Postal Code\" and \"Country\" parameters."
+msgstr ""
+
+#: includes/class-woograbexpress.php:183
+msgid "GrabExpress Service Options"
+msgstr ""
+
+#: includes/class-woograbexpress.php:185
+msgid "<a href=\"https://www.grab.com/id/express/\" target=\"_blank\">Click here</a> for more info about GrabExpress."
+msgstr ""
+
+#: includes/class-woograbexpress.php:188
+msgid "Cost per Kilometer"
+msgstr ""
+
+#: includes/class-woograbexpress.php:190
+msgid "Per kilometer rates that will be billed to customer."
+msgstr ""
+
+#: includes/class-woograbexpress.php:195
+msgid "Minimum Cost"
+msgstr ""
+
+#: includes/class-woograbexpress.php:197
+msgid "Minimum shipping cost that will be billed to customer. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:202
+msgid "Maximum Cost"
+msgstr ""
+
+#: includes/class-woograbexpress.php:204
+msgid "Maximum shipping cost that will be billed to customer. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:209
+msgid "Maximum Package Weight"
+msgstr ""
+
+#: includes/class-woograbexpress.php:211
+msgid "Maximum package weight in kilograms that will be allowed to use this courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:217
+msgid "Maximum Package Width"
+msgstr ""
+
+#: includes/class-woograbexpress.php:219
+msgid "Maximum package size width in centimeters that will be allowed to use this courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:225
+msgid "Maximum Package Length"
+msgstr ""
+
+#: includes/class-woograbexpress.php:227
+msgid "Maximum package size length in centimeters that will be allowed to use this courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:233
+msgid "Maximum Package Height"
+msgstr ""
+
+#: includes/class-woograbexpress.php:235
+msgid "Maximum package size height in centimeters that will be allowed to use this courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:241
+msgid "Minimum Distance"
+msgstr ""
+
+#: includes/class-woograbexpress.php:243
+msgid "Minimum distance in kilometers that will be allowed to use this courier. Leave blank to disable."
+msgstr ""
+
 #: includes/class-woograbexpress.php:249
+msgid "Maximum Distance"
+msgstr ""
+
+#: includes/class-woograbexpress.php:251
+msgid "Maximum distance in kilometers that will be allowed to use this courier. Leave blank to disable."
+msgstr ""
+
+#: includes/class-woograbexpress.php:257
+msgid "Show Distance"
+msgstr ""
+
+#: includes/class-woograbexpress.php:260
 msgid "Show the distance info to customer during checkout."
 msgstr ""
 
-#: includes/class-woograbexpress.php:253
+#: includes/class-woograbexpress.php:264
 msgid "Multiple Drivers"
 msgstr ""
 
-#: includes/class-woograbexpress.php:254
+#: includes/class-woograbexpress.php:265
 msgid "Enable"
 msgstr ""
 
-#: includes/class-woograbexpress.php:256
-msgid ""
-"Split shipment into several drivers if the package bulk weight and "
-"dimensions exceeded the limit."
+#: includes/class-woograbexpress.php:267
+msgid "Split shipment into several drivers if the package bulk weight and dimensions exceeded the limit."
 msgstr ""
 
-#: includes/class-woograbexpress.php:274
+#: includes/class-woograbexpress.php:313
+msgid "Search your store location"
+msgstr ""
+
+#: includes/class-woograbexpress.php:346
 msgid "API Key is required"
 msgstr ""
 
-#: includes/class-woograbexpress.php:295
+#: includes/class-woograbexpress.php:367
+msgid "Store Location coordinates is required"
+msgstr ""
+
+#: includes/class-woograbexpress.php:387
 msgid "Store Location Latitude is required"
 msgstr ""
 
-#: includes/class-woograbexpress.php:316
+#: includes/class-woograbexpress.php:408
 msgid "Store Location Longitude is required"
 msgstr ""
 
-#: includes/class-woograbexpress.php:377
-#, php-format
+#. Translators: Number of dirvers needed.
+
+#: includes/class-woograbexpress.php:469
 msgid "%s driver"
 msgid_plural "%s drivers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: woograbexpress.php:74
+#: includes/class-woograbexpress.php:670
+msgid "Cached key"
+msgstr ""
+
+#: includes/class-woograbexpress.php:671
+msgid "Cached data"
+msgstr ""
+
+#: includes/class-woograbexpress.php:677
+msgid "API Request URL"
+msgstr ""
+
+#: includes/class-woograbexpress.php:688
+msgid "API Fallback Request URL"
+msgstr ""
+
+#: includes/class-woograbexpress.php:727
+msgid "API response is empty"
+msgstr ""
+
+#: includes/class-woograbexpress.php:736
+msgid "Error while decoding API response"
+msgstr ""
+
+#: includes/class-woograbexpress.php:744 includes/class-woograbexpress.php:781
+msgid "API Response Error"
+msgstr ""
+
+#: includes/class-woograbexpress.php:753
+msgid "Origin and/or destination of this pairing could not be geocoded"
+msgstr ""
+
+#: includes/class-woograbexpress.php:754
+msgid "No route could be found between the origin and destination"
+msgstr ""
+
+#: includes/class-woograbexpress.php:755
+msgid "Requested route is too long and cannot be processed"
+msgstr ""
+
+#: woograbexpress.php:108
 msgid "Settings"
 msgstr ""
 
+#: woograbexpress.php:154
+msgid "Drag this marker or search your address at the input above."
+msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "WooGrabExpress"
 msgstr ""
@@ -270,9 +300,7 @@ msgid "https://github.com/sofyansitorus/WooGrabExpress"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"WooCommerce per kilometer shipping rates calculator for GrabExpress courier "
-"from Grab Indonesia."
+msgid "WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier."
 msgstr ""
 
 #. Author of the plugin/theme
