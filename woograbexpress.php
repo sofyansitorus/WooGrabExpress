@@ -45,6 +45,7 @@ define( 'WOOGRABEXPRESS_URL', plugin_dir_url( __FILE__ ) );
 define( 'WOOGRABEXPRESS_VERSION', '1.2.3' );
 define( 'WOOGRABEXPRESS_METHOD_ID', 'woograbexpress' );
 define( 'WOOGRABEXPRESS_METHOD_TITLE', 'WooGrabExpress' );
+define( 'WOOGRABEXPRESS_MAP_SECRET_KEY', 'QUl6YVN5Qk82MVFJUm52Zkc5c2tKTW1HV1JVbWhsSU5lcUZXaTdV' );
 
 /**
  * Load plugin textdomain.

@@ -121,17 +121,21 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'description' => __( 'This plugin require Google Maps Distance Matrix API Services enabled in your Google Console. <a href="https://developers.google.com/maps/documentation/distance-matrix/get-api-key" target="_blank">Click here</a> to get API Key and to enable the services.', 'woograbexpress' ),
 				'default'     => '',
 			),
-			'origin_lat'        => array(
-				'title'       => __( 'Store Location Latitude', 'woograbexpress' ),
-				'type'        => 'decimal',
-				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
-				'default'     => '',
+			'gmaps_address_picker'      => array(
+				'title' => __( 'Store Location', 'woograbexpress' ),
+				'type'  => 'address_picker',
 			),
-			'origin_lng'        => array(
-				'title'       => __( 'Store Location Longitude', 'woograbexpress' ),
-				'type'        => 'decimal',
-				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
+			'origin_lat'                => array(
+				'title'       => __( 'Store Location Latitude', 'woograbexpress' ),
+				'type'        => 'text',
 				'default'     => '',
+				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
+			),
+			'origin_lng'                => array(
+				'title'       => __( 'Store Location Logitude', 'woograbexpress' ),
+				'type'        => 'text',
+				'default'     => '',
+				'description' => __( '<a href="http://www.latlong.net/" target="_blank">Click here</a> to get your store location coordinates info.', 'woograbexpress' ),
 			),
 			'gmaps_api_mode'    => array(
 				'title'       => __( 'Travel Mode', 'woograbexpress' ),
@@ -257,6 +261,52 @@ class WooGrabExpress extends WC_Shipping_Method {
 				'desc_tip'    => true,
 			),
 		);
+	}
+
+	/**
+	 * Generate origin settings field.
+	 *
+	 * @since 1.2.4
+	 * @param string $key Settings field key.
+	 * @param array  $data Settings field data.
+	 */
+	public function generate_address_picker_html( $key, $data ) {
+		$field_key = $this->get_field_key( $key );
+
+		$defaults = array(
+			'title'             => '',
+			'disabled'          => false,
+			'class'             => '',
+			'css'               => '',
+			'placeholder'       => '',
+			'type'              => 'text',
+			'desc_tip'          => false,
+			'description'       => '',
+			'custom_attributes' => array(),
+			'options'           => array(),
+		);
+
+		$data = wp_parse_args( $data, $defaults );
+
+		ob_start(); ?>
+		<tr valign="top">
+			<th scope="row" class="titledesc">
+				<?php echo esc_html( $this->get_tooltip_html( $data ) ); ?>
+				<label for="<?php echo esc_attr( $field_key ); ?>"><?php echo wp_kses_post( $data['title'] ); ?></label>
+			</th>
+			<td class="forminp">
+				<input type="hidden" id="map-secret-key" value="<?php echo esc_attr( WOOGRABEXPRESS_MAP_SECRET_KEY ); ?>">
+				<div id="woograbexpress-map-wrapper" class="woograbexpress-map-wrapper"></div>
+				<script type="text/html" id="tmpl-woograbexpress-map-search">
+					<input id="{{data.map_search_id}}" class="woograbexpress-map-search controls" type="text" placeholder="<?php echo esc_attr( __( 'Search your store location', 'woograbexpress' ) ); ?>" autocomplete="off" />
+				</script>
+				<script type="text/html" id="tmpl-woograbexpress-map-canvas">
+					<div id="{{data.map_canvas_id}}" class="woograbexpress-map-canvas"></div>
+				</script>
+			</td>
+		</tr>
+		<?php
+		return ob_get_clean();
 	}
 
 	/**
