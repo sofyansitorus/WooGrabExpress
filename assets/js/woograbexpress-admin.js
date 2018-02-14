@@ -47,22 +47,7 @@
 						.find(".wc-shipping-zone-method-type")
 						.text() === woograbexpress_params.method_title
 				) {
-					$(".woograbexpress-toggle-service").trigger("change");
 					self._initGoogleMaps();
-				}
-			});
-
-			$(document).on("change", ".woograbexpress-toggle-service", function() {
-				if ($(this).is(":checked")) {
-					$(this)
-						.closest("table")
-						.find("tr:not(:first-child)")
-						.fadeIn();
-				} else {
-					$(this)
-						.closest("table")
-						.find("tr:not(:first-child)")
-						.fadeOut();
 				}
 			});
 		},
