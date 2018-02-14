@@ -79,8 +79,7 @@ add_action( 'woocommerce_shipping_init', 'woograbexpress_shipping_init' );
  */
 function woograbexpress_plugin_action_links( $links ) {
 	$zone_id = 0;
-	$zones   = WC_Shipping_Zones::get_zones();
-	foreach ( $zones as $zone ) {
+	foreach ( WC_Shipping_Zones::get_zones() as $zone ) {
 		if ( empty( $zone['shipping_methods'] ) || empty( $zone['zone_id'] ) ) {
 			continue;
 		}
@@ -90,11 +89,23 @@ function woograbexpress_plugin_action_links( $links ) {
 				break;
 			}
 		}
+		if ( $zone_id ) {
+			break;
+		}
 	}
 
 	$links = array_merge(
 		array(
-			'<a href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=wc-settings&tab=shipping&zone_id=' . $zone_id ), 'woograbexpress_settings', 'woograbexpress_nonce' ) ) . '">' . __( 'Settings', 'woograbexpress' ) . '</a>',
+			'<a href="' . esc_url(
+				add_query_arg(
+					array(
+						'page'               => 'wc-settings',
+						'tab'                => 'shipping',
+						'zone_id'            => $zone_id,
+						'woograbexpress_settings' => true,
+					), admin_url( 'admin.php' )
+				)
+			) . '">' . __( 'Settings', 'woograbexpress' ) . '</a>',
 		),
 		$links
 	);
@@ -131,20 +142,21 @@ function woograbexpress_enqueue_scripts( $hook = null ) {
 			WOOGRABEXPRESS_VERSION, // Define a version (optional).
 			true // Specify whether to put in footer (leave this true).
 		);
+
 		wp_localize_script(
 			'woograbexpress-admin',
 			'woograbexpress_params',
 			array(
-				'show_settings' => ( isset( $_GET['woograbexpress_nonce'] ) && wp_verify_nonce( $_GET['woograbexpress_nonce'], 'woograbexpress_settings' ) && is_admin() ),
+				'show_settings' => ( isset( $_GET['woograbexpress_settings'] ) && is_admin() ) ? true : false,
 				'method_id'     => WOOGRABEXPRESS_METHOD_ID,
 				'method_title'  => WOOGRABEXPRESS_METHOD_TITLE,
 				'txt'           => array(
 					'drag_marker' => __( 'Drag this marker or search your address at the input above.', 'woograbexpress' ),
 				),
 				'marker'        => WOOGRABEXPRESS_URL . 'assets/img/marker.png',
+				'language'      => get_locale(),
 			)
 		);
-
 	}
 }
 add_action( 'admin_enqueue_scripts', 'woograbexpress_enqueue_scripts', 999 );
