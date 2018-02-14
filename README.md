@@ -93,6 +93,10 @@ I always welcome and encourage contributions to this plugin. Please visit the pl
 
 ## Changelog ##
 
+### 1.2.4 ###
+* Improvemnets - Add new option: Enable Fallback Request.
+* Improvemnets - Add and enhance Map Picker UI/UX.
+
 ### 1.2.3 ###
 * Fix - Remove Maps Place Picker.
 
@@ -139,7 +143,7 @@ I always welcome and encourage contributions to this plugin. Please visit the pl
 
 ## Upgrade Notice ##
 
-### 1.2.3 ###
-This version include bug fix Maps Picker. Upgrade immediately.
+### 1.2.4 ###
+This version include improvements. Upgrade immediately.
 
 
