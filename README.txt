@@ -4,14 +4,14 @@ Tags: woocommerce-shipping,ojek-shipping,grabexpress,grab-shipping
 Requires at least: 4.8
 Tested up to: 4.9.2
 Requires PHP: 5.6
-Stable tag: trunk
+Stable tag: 1.2.4
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.
+WooCommerce per kilometer shipping rates calculator for GrabExpress delivery service from Grab Indonesia.
 
 == Description ==
-WooCommerce per kilometer shipping rates calculator for GrabExpress Grab Indonesia courier.
+WooCommerce per kilometer shipping rates calculator for GrabExpress delivery service from Grab Indonesia.
 
 Please note that this plugin is not using official Grab Indonesia API. This plugin just estimate the distance matrix using using Google Maps Distance Matrix API and then calculating the cost using the rates defined in the settings.
 
@@ -62,18 +62,18 @@ You can setup the plugin setting from the Shipping Zones settings. Please check 
 = Where can I get support? =
 You can either support ticket at plugin support forum :
 
-* [Plugin Support Forum](https://wordpress.org/support/plugin/wcsdm)
+* [Plugin Support Forum](https://wordpress.org/support/plugin/woograbexpress)
 
 = Where can I report bugs? =
 You can report bugs at the plugin GitHub repository:
 
-* [Plugin Support Forum](https://wordpress.org/support/plugin/wcsdm)
-* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooCommerce-Shipping-Distance-Matrix)
+* [Plugin Support Forum](https://wordpress.org/support/plugin/woograbexpress)
+* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooGrabExpress)
 
 = Can I contribute to develop this plugin? =
 I always welcome and encourage contributions to this plugin. Please visit the plugin GitHub repository:
 
-* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooCommerce-Shipping-Distance-Matrix)
+* [Plugin GitHub Repository](https://github.com/sofyansitorus/WooGrabExpress)
 
 == Screenshots ==
 1. Settings panel: General Options
