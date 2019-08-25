@@ -36,6 +36,7 @@ class WooGrabExpress_Services {
 			'same_day' => array(
 				'label'   => __( 'Same Day Delivery', 'woograbexpress' ),
 				'default' => array(
+					'enable'              => 'yes',
 					'per_km_cost'         => 2500,
 					'per_km_min_distance' => 0,
 					'min_cost'            => 15000,
