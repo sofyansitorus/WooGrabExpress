@@ -4,7 +4,7 @@ Tags: woocommerce-shipping,ojek-shipping,grabexpress,grab-shipping
 Requires at least: 4.8
 Tested up to: 4.9.2
 Requires PHP: 5.6
-Stable tag: 1.2.4
+Stable tag: 1.3.0
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -81,6 +81,17 @@ I always welcome and encourage contributions to this plugin. Please visit the pl
 3. Shipping Calculator preview
 
 == Changelog ==
+
+= 1.3.0 =
+
+* Improvements - Enabled address 1 and address 2 fields in the shipping calculator form.
+* Improvements - Added option to set distance slab for per km cost.
+* Improvements - Added option to round up the distance.
+* Improvements - Added option to use alternate API Key for server side API request.
+* Improvements - Added option to choose origin type data.
+* Improvements - Added option to choose preferred route type.
+* Improvements - Improved the multiple drivers calculation.
+* Improvements - Improved the UI/UX in admin area. 
 
 = 1.2.4 =
 
