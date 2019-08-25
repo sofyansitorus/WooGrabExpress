@@ -2,7 +2,7 @@
 Contributors: sofyansitorus
 Tags: woocommerce-shipping,ojek-shipping,grabexpress,grab-shipping
 Requires at least: 4.8
-Tested up to: 4.9.2
+Tested up to: 5.2.2
 Requires PHP: 5.6
 Stable tag: 1.3.0
 License: GPL-2.0+
