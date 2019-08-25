@@ -21,7 +21,7 @@ return array(
 		'gmaps_api_mode'    => 'travel_mode',
 		'gmaps_api_avoid'   => 'route_restrictions',
 		'grabexpress_title' => 'title_same_day',
-		'cost_per_km'       => 'cost_per_km_same_day',
+		'cost_per_km'       => 'per_km_cost_same_day',
 		'min_distance'      => 'per_km_min_distance_same_day',
 		'min_cost'          => 'min_cost_same_day',
 		'max_cost'          => 'max_cost_same_day',
