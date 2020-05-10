@@ -108,7 +108,7 @@ function woograbexpress_instances( $enabled_only = true ) {
 
 	if ( $shipping_methods ) {
 		foreach ( $shipping_methods as $shipping_method ) {
-			if ( WOOGOSEND_METHOD_ID !== $shipping_method->method_id ) {
+			if ( WOOGRABEXPRESS_METHOD_ID !== $shipping_method->method_id ) {
 				continue;
 			}
 
@@ -127,7 +127,7 @@ function woograbexpress_instances( $enabled_only = true ) {
 			$shipping_methods = $zone_data_store->get_methods( $zone['id'], $enabled_only );
 			if ( $shipping_methods ) {
 				foreach ( $shipping_methods as $shipping_method ) {
-					if ( WOOGOSEND_METHOD_ID !== $shipping_method->method_id ) {
+					if ( WOOGRABEXPRESS_METHOD_ID !== $shipping_method->method_id ) {
 						continue;
 					}
 
@@ -206,11 +206,11 @@ function woograbexpress_array_insert_after( $after_key, $array, $new_key, $new_v
  * @return bool
  */
 function woograbexpress_is_dev_env() {
-	if ( defined( 'WOOGOSEND_DEV' ) && WOOGOSEND_DEV ) {
+	if ( defined( 'WOOGRABEXPRESS_DEV' ) && WOOGRABEXPRESS_DEV ) {
 		return true;
 	}
 
-	if ( function_exists( 'getenv' ) && getenv( 'WOOGOSEND_DEV' ) ) {
+	if ( function_exists( 'getenv' ) && getenv( 'WOOGRABEXPRESS_DEV' ) ) {
 		return true;
 	}
 
@@ -233,11 +233,11 @@ if ( ! function_exists( 'woograbexpress_autoload' ) ) :
 		}
 
 		if ( strpos( $class, 'woograbexpress_services_' ) === 0 ) {
-			require_once WOOGOSEND_PATH . 'includes/services/class-' . str_replace( '_', '-', $class ) . '.php';
+			require_once WOOGRABEXPRESS_PATH . 'includes/services/class-' . str_replace( '_', '-', $class ) . '.php';
 		} elseif ( strpos( $class, 'woograbexpress_migration_' ) === 0 ) {
-			require_once WOOGOSEND_PATH . 'includes/migrations/class-' . str_replace( '_', '-', $class ) . '.php';
+			require_once WOOGRABEXPRESS_PATH . 'includes/migrations/class-' . str_replace( '_', '-', $class ) . '.php';
 		} else {
-			require_once WOOGOSEND_PATH . 'includes/classes/class-' . str_replace( '_', '-', $class ) . '.php';
+			require_once WOOGRABEXPRESS_PATH . 'includes/classes/class-' . str_replace( '_', '-', $class ) . '.php';
 		}
 	}
 endif;

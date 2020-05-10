@@ -57,13 +57,13 @@ class WooGrabExpress {
 	 */
 	private function __construct() {
 		// Set the activation hook.
-		register_activation_hook( WOOGOSEND_FILE, array( $this, 'install' ) );
+		register_activation_hook( WOOGRABEXPRESS_FILE, array( $this, 'install' ) );
 
 		// Hook to load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
 		// Hook to add plugin action links.
-		add_action( 'plugin_action_links_' . plugin_basename( WOOGOSEND_FILE ), array( $this, 'plugin_action_links' ) );
+		add_action( 'plugin_action_links_' . plugin_basename( WOOGRABEXPRESS_FILE ), array( $this, 'plugin_action_links' ) );
 
 		// Hook to register the shipping method.
 		add_filter( 'woocommerce_shipping_methods', array( $this, 'register_shipping_method' ) );
@@ -88,14 +88,14 @@ class WooGrabExpress {
 	 * @return void
 	 */
 	public function install() {
-		update_option( 'woograbexpress_data_version', WOOGOSEND_VERSION, 'yes' );
+		update_option( 'woograbexpress_data_version', WOOGRABEXPRESS_VERSION, 'yes' );
 	}
 
 	/**
 	 * Load plugin textdomain.
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'woograbexpress', false, basename( WOOGOSEND_PATH ) . '/languages' );
+		load_plugin_textdomain( 'woograbexpress', false, basename( WOOGRABEXPRESS_PATH ) . '/languages' );
 	}
 
 	/**
@@ -135,9 +135,9 @@ class WooGrabExpress {
 				'<a href="' . esc_url(
 					add_query_arg(
 						array(
-							'page'               => 'wc-settings',
-							'tab'                => 'shipping',
-							'zone_id'            => $zone_id,
+							'page'                    => 'wc-settings',
+							'tab'                     => 'shipping',
+							'zone_id'                 => $zone_id,
 							'woograbexpress_settings' => true,
 						),
 						admin_url( 'admin.php' )
@@ -163,7 +163,7 @@ class WooGrabExpress {
 		$is_dev_env = woograbexpress_is_dev_env();
 
 		// Define the styles URL.
-		$css_url = WOOGOSEND_URL . 'assets/css/woograbexpress-backend.min.css';
+		$css_url = WOOGRABEXPRESS_URL . 'assets/css/woograbexpress-backend.min.css';
 		if ( $is_dev_env ) {
 			$css_url = add_query_arg( array( 't' => time() ), str_replace( '.min', '', $css_url ) );
 		}
@@ -173,12 +173,12 @@ class WooGrabExpress {
 			'woograbexpress-backend', // Give the script a unique ID.
 			$css_url, // Define the path to the JS file.
 			array(), // Define dependencies.
-			WOOGOSEND_VERSION, // Define a version (optional).
+			WOOGRABEXPRESS_VERSION, // Define a version (optional).
 			false // Specify whether to put in footer (leave this false).
 		);
 
 		// Define the scripts URL.
-		$js_url = WOOGOSEND_URL . 'assets/js/woograbexpress-backend.min.js';
+		$js_url = WOOGRABEXPRESS_URL . 'assets/js/woograbexpress-backend.min.js';
 		if ( $is_dev_env ) {
 			$js_url = add_query_arg( array( 't' => time() ), str_replace( '.min', '', $js_url ) );
 		}
@@ -188,7 +188,7 @@ class WooGrabExpress {
 			'woograbexpress-backend', // Give the script a unique ID.
 			$js_url, // Define the path to the JS file.
 			array( 'jquery' ), // Define dependencies.
-			WOOGOSEND_VERSION, // Define a version (optional).
+			WOOGRABEXPRESS_VERSION, // Define a version (optional).
 			true // Specify whether to put in footer (leave this true).
 		);
 
@@ -198,13 +198,13 @@ class WooGrabExpress {
 			'woograbexpress_backend',
 			array(
 				'showSettings'           => isset( $_GET['woograbexpress_settings'] ) && is_admin(), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				'methodId'               => WOOGOSEND_METHOD_ID,
-				'methodTitle'            => WOOGOSEND_METHOD_TITLE,
-				'marker'                 => WOOGOSEND_URL . 'assets/img/marker.png',
-				'defaultLat'             => WOOGOSEND_DEFAULT_LAT,
-				'defaultLng'             => WOOGOSEND_DEFAULT_LNG,
-				'testLat'                => WOOGOSEND_TEST_LAT,
-				'testLng'                => WOOGOSEND_TEST_LNG,
+				'methodId'               => WOOGRABEXPRESS_METHOD_ID,
+				'methodTitle'            => WOOGRABEXPRESS_METHOD_TITLE,
+				'marker'                 => WOOGRABEXPRESS_URL . 'assets/img/marker.png',
+				'defaultLat'             => WOOGRABEXPRESS_DEFAULT_LAT,
+				'defaultLng'             => WOOGRABEXPRESS_DEFAULT_LNG,
+				'testLat'                => WOOGRABEXPRESS_TEST_LAT,
+				'testLng'                => WOOGRABEXPRESS_TEST_LNG,
 				'language'               => get_locale(),
 				'isDevEnv'               => $is_dev_env,
 				'i18n'                   => woograbexpress_i18n(),
@@ -226,7 +226,7 @@ class WooGrabExpress {
 		$is_dev_env = woograbexpress_is_dev_env();
 
 		// Define scripts URL.
-		$js_url = WOOGOSEND_URL . 'assets/js/woograbexpress-frontend.min.js';
+		$js_url = WOOGRABEXPRESS_URL . 'assets/js/woograbexpress-frontend.min.js';
 		if ( $is_dev_env ) {
 			$js_url = add_query_arg( array( 't' => time() ), str_replace( '.min', '', $js_url ) );
 		}
@@ -236,7 +236,7 @@ class WooGrabExpress {
 			'woograbexpress-frontend', // Give the script a unique ID.
 			$js_url, // Define the path to the JS file.
 			array( 'jquery', 'wp-util' ), // Define dependencies.
-			WOOGOSEND_VERSION, // Define a version (optional).
+			WOOGRABEXPRESS_VERSION, // Define a version (optional).
 			true // Specify whether to put in footer (leave this true).
 		);
 	}
@@ -248,7 +248,7 @@ class WooGrabExpress {
 	 */
 	public function register_shipping_method( $methods ) {
 		if ( class_exists( 'WooGrabExpress_Shipping_Method' ) ) {
-			$methods[ WOOGOSEND_METHOD_ID ] = 'WooGrabExpress_Shipping_Method';
+			$methods[ WOOGRABEXPRESS_METHOD_ID ] = 'WooGrabExpress_Shipping_Method';
 		}
 
 		return $methods;

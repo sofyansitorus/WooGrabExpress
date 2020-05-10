@@ -43,8 +43,8 @@ class WooGrabExpress_API {
 			$args = wp_parse_args(
 				$args,
 				array(
-					'origins'      => $is_validation ? array( WOOGOSEND_DEFAULT_LAT, WOOGOSEND_DEFAULT_LNG ) : '',
-					'destinations' => $is_validation ? array( WOOGOSEND_TEST_LAT, WOOGOSEND_TEST_LNG ) : '',
+					'origins'      => $is_validation ? array( WOOGRABEXPRESS_DEFAULT_LAT, WOOGRABEXPRESS_DEFAULT_LNG ) : '',
+					'destinations' => $is_validation ? array( WOOGRABEXPRESS_TEST_LAT, WOOGRABEXPRESS_TEST_LNG ) : '',
 					'key'          => '',
 					'avoid'        => '',
 					'language'     => get_locale(),

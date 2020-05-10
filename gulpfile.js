@@ -384,8 +384,8 @@ gulp.task('bump', function () {
     {
       file: ['./includes/constants.php'],
       config: {
-        key: "WOOGOSEND_VERSION",
-        regex: new RegExp('([<|\'|"]?(WOOGOSEND_VERSION)[>|\'|"]?[ ]*[:=,]?[ ]*[\'|"]?[a-z]?)(\\d+.\\d+.\\d+)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z\\.-]+)?([\'|"|<]?)', 'i'),
+        key: "WOOGRABEXPRESS_VERSION",
+        regex: new RegExp('([<|\'|"]?(WOOGRABEXPRESS_VERSION)[>|\'|"]?[ ]*[:=,]?[ ]*[\'|"]?[a-z]?)(\\d+.\\d+.\\d+)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z\\.-]+)?([\'|"|<]?)', 'i'),
         type: argv.hasOwnProperty('type') ? argv.type : 'patch',
       },
       dest: './includes/',

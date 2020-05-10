@@ -32,13 +32,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin main constants.
-define( 'WOOGOSEND_FILE', __FILE__ );
-define( 'WOOGOSEND_PATH', plugin_dir_path( WOOGOSEND_FILE ) );
-define( 'WOOGOSEND_URL', plugin_dir_url( WOOGOSEND_FILE ) );
+define( 'WOOGRABEXPRESS_FILE', __FILE__ );
+define( 'WOOGRABEXPRESS_PATH', plugin_dir_path( WOOGRABEXPRESS_FILE ) );
+define( 'WOOGRABEXPRESS_URL', plugin_dir_url( WOOGRABEXPRESS_FILE ) );
 
 // Load the helpers.
-require_once WOOGOSEND_PATH . '/includes/constants.php';
-require_once WOOGOSEND_PATH . '/includes/helpers.php';
+require_once WOOGRABEXPRESS_PATH . '/includes/constants.php';
+require_once WOOGRABEXPRESS_PATH . '/includes/helpers.php';
 
 // Register the class autoload.
 if ( function_exists( 'woograbexpress_autoload' ) ) {

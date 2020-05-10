@@ -85,10 +85,10 @@ class WooGrabExpress_Shipping_Method extends WC_Shipping_Method {
 	 */
 	public function __construct( $instance_id = 0 ) {
 		// ID for your shipping method. Should be unique.
-		$this->id = WOOGOSEND_METHOD_ID;
+		$this->id = WOOGRABEXPRESS_METHOD_ID;
 
 		// Title shown in admin.
-		$this->method_title = WOOGOSEND_METHOD_TITLE;
+		$this->method_title = WOOGRABEXPRESS_METHOD_TITLE;
 
 		// Title shown in admin.
 		$this->title = $this->method_title;
@@ -150,13 +150,13 @@ class WooGrabExpress_Shipping_Method extends WC_Shipping_Method {
 
 		$data_version = get_option( 'woograbexpress_data_version' );
 
-		if ( $data_version && version_compare( WOOGOSEND_VERSION, $data_version, '<=' ) ) {
+		if ( $data_version && version_compare( WOOGRABEXPRESS_VERSION, $data_version, '<=' ) ) {
 			return;
 		}
 
 		$migrations = array();
 
-		foreach ( glob( WOOGOSEND_PATH . 'includes/migrations/*.php' ) as $migration_file ) {
+		foreach ( glob( WOOGRABEXPRESS_PATH . 'includes/migrations/*.php' ) as $migration_file ) {
 			$migration_file_name  = basename( $migration_file, '.php' );
 			$migration_class_name = 'WooGrabExpress_Migration_' . str_replace( '-', '_', str_replace( 'class-woograbexpress-migration-', '', $migration_file_name ) );
 
@@ -212,7 +212,7 @@ class WooGrabExpress_Shipping_Method extends WC_Shipping_Method {
 	 * @return void
 	 */
 	private function register_services() {
-		foreach ( glob( WOOGOSEND_PATH . 'includes/services/class-woograbexpress-services-*.php' ) as $file ) {
+		foreach ( glob( WOOGRABEXPRESS_PATH . 'includes/services/class-woograbexpress-services-*.php' ) as $file ) {
 			$class_name = str_replace( array( 'class-', 'woograbexpress' ), array( '', 'WooGrabExpress' ), basename( $file, '.php' ) );
 			$class_name = array_map( 'ucfirst', explode( '-', $class_name ) );
 			$class_name = implode( '_', $class_name );
@@ -589,7 +589,7 @@ class WooGrabExpress_Shipping_Method extends WC_Shipping_Method {
 	}
 
 	/**
-	 * Validate WOOGOSEND Field.
+	 * Validate WOOGRABEXPRESS Field.
 	 *
 	 * Make sure the data is escaped correctly, etc.
 	 *
