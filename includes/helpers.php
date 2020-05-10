@@ -3,7 +3,6 @@
  * Helpers file
  *
  * @link       https://github.com/sofyansitorus
- * @since      1.3
  *
  * @package    WooGrabExpress
  * @subpackage WooGrabExpress/includes
@@ -17,11 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Check if plugin is active
  *
- * @since 1.3
- *
  * @param string $plugin_file Plugin file name.
- *
- * @return bool
  */
 function woograbexpress_is_plugin_active( $plugin_file ) {
 	$active_plugins = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
@@ -36,16 +31,13 @@ function woograbexpress_is_plugin_active( $plugin_file ) {
 /**
  * Get i18n strings
  *
- * @since 1.3
- *
  * @param string $key Strings key.
  * @param string $default Default value.
- *
  * @return mixed
  */
 function woograbexpress_i18n( $key = '', $default = '' ) {
 	$i18n = array(
-		'drag_marker'  => __( 'Drag this marker or search your store address using the search box located at top left corner of the map.', 'woograbexpress' ),
+		'drag_marker'  => __( 'Drag this marker or search your address at the input above.', 'woograbexpress' ),
 		// translators: %s = distance unit.
 		'per_unit'     => __( 'Per %s', 'woograbexpress' ),
 		'map_is_error' => __( 'Map is error', 'woograbexpress' ),
@@ -75,12 +67,13 @@ function woograbexpress_i18n( $key = '', $default = '' ) {
 			// translators: %s = Field name.
 			'field_select'          => __( '%s field value selected is not exists', 'woograbexpress' ),
 			// translators: %1$d = row number, %2$s = error message.
-			'duplicate_rate'        => __( 'Each shipping rules combination for each row must be unique. Please fix duplicate shipping rules for rate row %1$d: %2$s', 'woograbexpress' ),
-			'need_upgrade'          => array(
-				// translators: %s = Field name.
-				'general'         => __( '%s field value only changeable in pro version. Please upgrade!', 'woograbexpress' ),
-				'total_cost_type' => __( 'Total cost type "Match Formula" options only available in pro version. Please upgrade!', 'woograbexpress' ),
-			),
+			'table_rate_row'        => __( 'Table rate row #%1$d: %2$s', 'woograbexpress' ),
+			// translators: %1$d = row number, %2$s = error message.
+			'duplicate_rate_row'    => __( 'Shipping rules combination duplicate with rate row #%1$d: %2$s', 'woograbexpress' ),
+			'finish_editing_api'    => __( 'Please finish the API Key Editing first!', 'woograbexpress' ),
+			'table_rates_invalid'   => __( 'Table rates data is incomplete or invalid!', 'woograbexpress' ),
+			'api_key_empty'         => __( 'Distance Calculator API Key cannot be empty!', 'woograbexpress' ),
+			'api_key_picker_empty'  => __( 'Location Picker API Key cannot be empty!', 'woograbexpress' ),
 		),
 		'Save Changes' => __( 'Save Changes', 'woograbexpress' ),
 		'Add New Rate' => __( 'Add New Rate', 'woograbexpress' ),
@@ -103,10 +96,7 @@ function woograbexpress_i18n( $key = '', $default = '' ) {
 /**
  * Get shipping method instances
  *
- * @since 1.3
- *
  * @param bool $enabled_only Filter to includes only enabled instances.
- *
  * @return array
  */
 function woograbexpress_instances( $enabled_only = true ) {
@@ -118,7 +108,7 @@ function woograbexpress_instances( $enabled_only = true ) {
 
 	if ( $shipping_methods ) {
 		foreach ( $shipping_methods as $shipping_method ) {
-			if ( WOOGRABEXPRESS_METHOD_ID !== $shipping_method->method_id ) {
+			if ( WOOGOSEND_METHOD_ID !== $shipping_method->method_id ) {
 				continue;
 			}
 
@@ -137,7 +127,7 @@ function woograbexpress_instances( $enabled_only = true ) {
 			$shipping_methods = $zone_data_store->get_methods( $zone['id'], $enabled_only );
 			if ( $shipping_methods ) {
 				foreach ( $shipping_methods as $shipping_method ) {
-					if ( WOOGRABEXPRESS_METHOD_ID !== $shipping_method->method_id ) {
+					if ( WOOGOSEND_METHOD_ID !== $shipping_method->method_id ) {
 						continue;
 					}
 
@@ -156,8 +146,6 @@ function woograbexpress_instances( $enabled_only = true ) {
 
 /**
  * Inserts a new key/value before the key in the array.
- *
- * @since 1.3
  *
  * @param string $before_key The key to insert before.
  * @param array  $array An array to insert in to.
@@ -187,8 +175,6 @@ function woograbexpress_array_insert_before( $before_key, $array, $new_key, $new
 /**
  * Inserts a new key/value after the key in the array.
  *
- * @since 1.3
- *
  * @param string $after_key The key to insert after.
  * @param array  $array An array to insert in to.
  * @param string $new_key The new key to insert.
@@ -213,3 +199,105 @@ function woograbexpress_array_insert_after( $after_key, $array, $new_key, $new_v
 
 	return $new;
 }
+
+/**
+ * Check is in development environment.
+ *
+ * @return bool
+ */
+function woograbexpress_is_dev_env() {
+	if ( defined( 'WOOGOSEND_DEV' ) && WOOGOSEND_DEV ) {
+		return true;
+	}
+
+	if ( function_exists( 'getenv' ) && getenv( 'WOOGOSEND_DEV' ) ) {
+		return true;
+	}
+
+	return false;
+}
+
+if ( ! function_exists( 'woograbexpress_autoload' ) ) :
+	/**
+	 * Class autoload
+	 *
+	 * @param string $class Class name.
+	 *
+	 * @return void
+	 */
+	function woograbexpress_autoload( $class ) {
+		$class = strtolower( $class );
+
+		if ( strpos( $class, 'woograbexpress' ) !== 0 ) {
+			return;
+		}
+
+		if ( strpos( $class, 'woograbexpress_services_' ) === 0 ) {
+			require_once WOOGOSEND_PATH . 'includes/services/class-' . str_replace( '_', '-', $class ) . '.php';
+		} elseif ( strpos( $class, 'woograbexpress_migration_' ) === 0 ) {
+			require_once WOOGOSEND_PATH . 'includes/migrations/class-' . str_replace( '_', '-', $class ) . '.php';
+		} else {
+			require_once WOOGOSEND_PATH . 'includes/classes/class-' . str_replace( '_', '-', $class ) . '.php';
+		}
+	}
+endif;
+
+if ( ! function_exists( 'woograbexpress_is_calc_shipping' ) ) :
+	/**
+	 * Check if current request is shipping calculator form.
+	 *
+	 * @return bool
+	 */
+	function woograbexpress_is_calc_shipping() {
+		$field  = 'woocommerce-shipping-calculator-nonce';
+		$action = 'woocommerce-shipping-calculator';
+
+		if ( isset( $_POST['calc_shipping'], $_POST[ $field ] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ $field ] ) ), $action ) ) {
+			return true;
+		}
+
+		return false;
+	}
+endif;
+
+if ( ! function_exists( 'woograbexpress_calc_shipping_field_value' ) ) :
+	/**
+	 * Get calculated shipping for fields value.
+	 *
+	 * @param string $input_name Input name.
+	 *
+	 * @return mixed|bool False on failure
+	 */
+	function woograbexpress_calc_shipping_field_value( $input_name ) {
+		$nonce_field  = 'woocommerce-shipping-calculator-nonce';
+		$nonce_action = 'woocommerce-shipping-calculator';
+
+		if ( isset( $_POST['calc_shipping'], $_POST[ $input_name ], $_POST[ $nonce_field ] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ $nonce_field ] ) ), $nonce_action ) ) {
+			return sanitize_text_field( wp_unslash( $_POST[ $input_name ] ) );
+		}
+
+		return false;
+	}
+endif;
+
+if ( ! function_exists( 'woograbexpress_shipping_fields' ) ) :
+	/**
+	 * Get shipping fields.
+	 *
+	 * @return array
+	 */
+	function woograbexpress_shipping_fields() {
+		$different_address = ! empty( $_POST['ship_to_different_address'] ) && ! wc_ship_to_billing_address_only(); // phpcs:ignore WordPress
+		$address_type      = $different_address ? 'shipping' : 'billing';
+		$checkout_fields   = WC()->checkout->get_checkout_fields( $address_type );
+
+		if ( ! $checkout_fields ) {
+			return false;
+		}
+
+		return array(
+			'type' => $address_type,
+			'data' => $checkout_fields,
+		);
+	}
+endif;

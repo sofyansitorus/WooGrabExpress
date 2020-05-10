@@ -3,8 +3,7 @@ node_modules
 vendor
 assets/css
 assets/js
-languages/woogosend.pot
+languages/woograbexpress.pot
 dist
 composer.lock
 package-lock.json
-languages/woograbexpress.pot
