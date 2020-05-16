@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants.
-define( 'WOOGRABEXPRESS_VERSION', '1.4.0' );
+define( 'WOOGRABEXPRESS_VERSION', '1.4.1' );
 define( 'WOOGRABEXPRESS_DATA_VERSION', '1.4.0' );
 define( 'WOOGRABEXPRESS_METHOD_ID', 'woograbexpress' );
 define( 'WOOGRABEXPRESS_METHOD_TITLE', 'WooGrabExpress' );
